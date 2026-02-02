@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 
 const Section = styled.section`
   padding: 140px 20px;
-  background: linear-gradient(180deg, rgba(5,5,5,1) 0%, rgba(20,20,20,1) 100%);
+  background: linear-gradient(180deg, #111 0%, #050505 100%);
+  position: relative;
   
   @media (max-width: 768px) {
     padding: 80px 20px;
@@ -12,7 +13,7 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 `;
 
@@ -25,7 +26,7 @@ const Tag = styled.span`
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 3px;
-  color: var(--accent-blue);
+  color: #888;
   display: block;
   margin-bottom: 16px;
   font-weight: 700;
@@ -35,177 +36,127 @@ const Title = styled.h2`
   font-size: 3rem;
   margin-bottom: 16px;
   word-break: keep-all;
+  color: white;
 
   @media (max-width: 768px) {
     font-size: 2.2rem;
   }
 `;
 
-const FlowContainer = styled.div`
+const ComparisonContainer = styled.div`
   display: flex;
+  gap: 40px;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  
-  @media (max-width: 900px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const Column = styled(motion.div)`
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: center;
-  max-width: 350px;
   
   @media (max-width: 768px) {
-    min-width: 100%;
-    max-width: 100%;
+    flex-direction: column;
+    gap: 20px;
   }
 `;
 
-const Card = styled.div`
-  width: 100%;
-  padding: 30px;
-  border-radius: 20px;
+const ComparisonCol = styled(motion.div)`
+  flex: 1;
+  background: ${props => props.isAfter ? 'rgba(68, 138, 255, 0.05)' : 'rgba(255, 82, 82, 0.05)'};
+  border: 1px solid ${props => props.isAfter ? 'rgba(68, 138, 255, 0.2)' : 'rgba(255, 82, 82, 0.2)'};
+  border-radius: 24px;
+  padding: 40px;
   position: relative;
-  text-align: left;
+  overflow: hidden;
+
+  &::before {
+    content: '${props => props.label}';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.05;
+    color: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+    text-transform: uppercase;
+  }
+`;
+
+const ColHeader = styled.h3`
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 20px;
 `;
 
-const ProblemCard = styled(Card)`
-  background: #222;
-  border: 1px solid #333;
+const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
   color: #ccc;
-  height: 180px;
-`;
-
-const SolutionCard = styled(Card)`
-  background: #fff;
-  color: #111;
-  height: 200px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-`;
-
-const Label = styled.span`
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #777;
-  margin-bottom: 12px;
-  display: block;
-
-  &.solution {
-    color: var(--accent-blue);
-  }
-`;
-
-const CardTitle = styled.h3`
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-  color: ${props => props.dark ? '#fff' : '#000'};
-`;
-
-const CardText = styled.p`
-  color: ${props => props.dark ? '#aaa' : '#444'};
-  font-size: 1rem;
-`;
-
-const Connector = styled.div`
-  height: 60px;
-  width: 2px;
-  background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
-  background-size: 2px 10px;
-  background-repeat: repeat-y;
-  position: relative;
-
-  &::after {
-    content: '▼';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #444;
-    font-size: 0.8rem;
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+    flex-shrink: 0;
   }
 `;
 
 const GoalSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
-    <Section id="goals">
+    <Section id="comparison">
       <Container>
         <SectionHeader>
-          <Tag>Overview</Tag>
-          <Title>문제를 해결하는 3가지 핵심</Title>
+          <Tag>Impact</Tag>
+          <Title>당신의 동아리도<br />바뀔 수 있습니다</Title>
         </SectionHeader>
 
-        <FlowContainer as={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          {/* Column 1 */}
-          <Column variants={itemVariants}>
-            <ProblemCard>
-              <Label>Problem 1</Label>
-              <CardTitle dark>운영 도구의 파편화</CardTitle>
-              <CardText dark>여러 툴을 왔다 갔다 하며<br />낭비되는 시간과 에너지</CardText>
-            </ProblemCard>
-            <Connector />
-            <SolutionCard>
-              <Label className="solution">Solution 1</Label>
-              <CardTitle>All-in-One 관리</CardTitle>
-              <CardText>출석, 공지, 회계까지<br />앱 하나로 <strong>Centralization</strong></CardText>
-            </SolutionCard>
-          </Column>
+        <ComparisonContainer>
+          {/* Before Column */}
+          <ComparisonCol
+            isAfter={false}
+            label="Before"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <ColHeader isAfter={false}>Before UMC App</ColHeader>
+            <List>
+              <ListItem isAfter={false}><div className="dot" /> 5개 이상의 플랫폼 왔다 갔다</ListItem>
+              <ListItem isAfter={false}><div className="dot" /> 공지 누락으로 인한 혼란</ListItem>
+              <ListItem isAfter={false}><div className="dot" /> 수동 출석 체크의 불편함</ListItem>
+              <ListItem isAfter={false}><div className="dot" /> 운영진의 번아웃</ListItem>
+              <ListItem isAfter={false}><div className="dot" /> 챌린저의 낮은 참여도</ListItem>
+            </List>
+          </ComparisonCol>
 
-          {/* Column 2 */}
-          <Column variants={itemVariants}>
-            <ProblemCard>
-              <Label>Problem 2</Label>
-              <CardTitle dark>PC 중심의 업무 환경</CardTitle>
-              <CardText dark>현장에서 노트북을 켜야 하는<br />비효율적인 동선</CardText>
-            </ProblemCard>
-            <Connector />
-            <SolutionCard>
-              <Label className="solution">Solution 2</Label>
-              <CardTitle>Mobile Admin</CardTitle>
-              <CardText>언제 어디서나<br /><strong>스마트폰으로 즉시 처리</strong></CardText>
-            </SolutionCard>
-          </Column>
-
-          {/* Column 3 */}
-          <Column variants={itemVariants}>
-            <ProblemCard>
-              <Label>Problem 3</Label>
-              <CardTitle dark>지부 간 소통 단절</CardTitle>
-              <CardText dark>타 학교/지부와 교류할 기회가<br />부족한 폐쇄성</CardText>
-            </ProblemCard>
-            <Connector />
-            <SolutionCard>
-              <Label className="solution">Solution 3</Label>
-              <CardTitle>Open Community</CardTitle>
-              <CardText>장벽 없이 소통하는<br /><strong>연합 게시판 활성화</strong></CardText>
-            </SolutionCard>
-          </Column>
-        </FlowContainer>
+          {/* After Column */}
+          <ComparisonCol
+            isAfter={true}
+            label="After"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <ColHeader isAfter={true}>After UMC App</ColHeader>
+            <List>
+              <ListItem isAfter={true}><div className="dot" /> 하나의 앱으로 모든 것 해결</ListItem>
+              <ListItem isAfter={true}><div className="dot" /> 100% 확인 가능한 공지 시스템</ListItem>
+              <ListItem isAfter={true}><div className="dot" /> 자동화된 스마트 출석</ListItem>
+              <ListItem isAfter={true}><div className="dot" /> 언제 어디서나 관리 가능</ListItem>
+              <ListItem isAfter={true}><div className="dot" /> 성장에 집중하는 동아리 문화</ListItem>
+            </List>
+          </ComparisonCol>
+        </ComparisonContainer>
       </Container>
     </Section>
   );

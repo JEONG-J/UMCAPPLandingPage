@@ -4,6 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import jeongImg from '../assets/Profile/JeOng.jpg';
 import riverImg from '../assets/Profile/River.png';
 import jonathanImg from '../assets/Profile/Jonathan.jpeg';
+import haneulImg from '../assets/Profile/하늘.jpeg';
+import euheotchaImg from '../assets/Profile/어헛차.jpg';
+import samiImg from '../assets/Profile/삼이.jpg';
+import martiImg from '../assets/Profile/마티.jpeg';
+import sophieImg from '../assets/Profile/소피.jpg';
+import naruImg from '../assets/Profile/나루.png';
+import doriImg from '../assets/Profile/도리.png';
+import wanaImg from '../assets/Profile/와나.jpg';
+import parkparkImg from '../assets/Profile/박박지현.jpeg';
+import seniImg from '../assets/Profile/세니.jpeg';
+import seueupImg from '../assets/Profile/스읍.png';
 
 const Section = styled.section`
   padding: 120px 20px;
@@ -252,20 +263,20 @@ const TeamSection = () => {
   const [selectedMember, setSelectedMember] = useState(null);
 
   const members = [
-    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'Swift, SwiftUI, Combine', comment: 'iOS 파트를 이끌고 있습니다. 🍎', image: riverImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'Java, Spring Boot, AWS', comment: '서버 아키텍처를 설계합니다. ☁️', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 5, name: '이희원 (삼이)', role: 'Android / iOS Design', stack: 'Figma, Adobe XD', comment: '사용자 경험을 디자인합니다. 🎨', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 6, name: '김미주 (마티)', role: 'iOS Developer', stack: 'Swift, UIKit', comment: '직관적인 인터페이스를 구현합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 7, name: '이예지 (소피)', role: 'iOS Developer', stack: 'Swift, SwiftUI', comment: '부드러운 모션과 인터랙션을 담당합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 8, name: '양지애 (나루)', role: 'Android Developer', stack: 'Kotlin, Android SDK', comment: '안정적인 앱 성능을 최적화합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / iOS Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'SwiftUI, CleanArchitecture, MapKit, CoreLocation', comment: 'iOS 파트를 이끌고 있습니다. 🍎', image: riverImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'Java, Spring Boot, AWS', comment: '서버 아키텍처를 설계합니다. ☁️', image: haneulImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', image: euheotchaImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 5, name: '이희원 (삼이)', role: 'Android Design', stack: 'Figma, Adobe XD', comment: '사용자 경험을 디자인합니다. 🎨', image: samiImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 6, name: '김미주 (마티)', role: 'iOS Developer', stack: 'Swift, UIKit', comment: '직관적인 인터페이스를 구현합니다.', image: martiImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 7, name: '이예지 (소피)', role: 'iOS Developer', stack: 'Swift, SwiftUI', comment: '부드러운 모션과 인터랙션을 담당합니다.', image: sophieImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 8, name: '양지애 (나루)', role: 'Android Developer', stack: 'Kotlin, Android SDK', comment: '안정적인 앱 성능을 최적화합니다.', image: naruImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 9, name: '조경석 (조나단)', role: 'Android Developer', stack: 'Kotlin, Coroutines', comment: '복잡한 비즈니스 로직을 해결합니다.', image: jonathanImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 10, name: '김도연 (도리)', role: 'Android Developer', stack: 'Kotlin, Compose', comment: '깔끔한 UI/UX를 구현합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 11, name: '강하나 (와나)', role: 'Server Developer', stack: 'Java, Spring Data JPA', comment: '데이터베이스 설계와 API를 개발합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 12, name: '박지현 (박박지현)', role: 'Server Developer', stack: 'Java, Spring Security', comment: '보안과 인증 시스템을 담당합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 13, name: '박세은 (세니)', role: 'Server Developer', stack: 'Java, Docker, Redis', comment: '서버 배포와 인프라를 구축합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 14, name: '이예은 (스읍)', role: 'Server Developer', stack: 'Java, Spring Boot', comment: '효율적인 API 통신을 구현합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } }
+    { id: 10, name: '김도연 (도리)', role: 'Android Developer', stack: 'Kotlin, Compose', comment: '깔끔한 UI/UX를 구현합니다.', image: doriImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 11, name: '강하나 (와나)', role: 'Server Developer', stack: 'Java, Spring Data JPA', comment: '데이터베이스 설계와 API를 개발합니다.', image: wanaImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 12, name: '박지현 (박박지현)', role: 'Server Developer', stack: 'Java, Spring Security', comment: '보안과 인증 시스템을 담당합니다.', image: parkparkImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 13, name: '박세은 (세니)', role: 'Server Developer', stack: 'Java, Docker, Redis', comment: '서버 배포와 인프라를 구축합니다.', image: seniImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 14, name: '이예은 (스읍)', role: 'Server Developer', stack: 'Java, Spring Boot', comment: '효율적인 API 통신을 구현합니다.', image: seueupImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } }
   ];
 
   return (

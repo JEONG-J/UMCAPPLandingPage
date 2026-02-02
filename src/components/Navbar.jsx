@@ -64,37 +64,40 @@ const NavLink = styled.a`
 `;
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        setIsScrolled(latest > 50);
-    });
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
 
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-    return (
-        <Nav
-            className={isScrolled ? 'scrolled' : ''}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-        >
-            <Logo onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                UMC App
-            </Logo>
-            <NavLinks>
-                <NavLink onClick={() => scrollToSection('problem')}>Why UMC App</NavLink>
-                <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
-                <NavLink onClick={() => scrollToSection('team')}>Team</NavLink>
-            </NavLinks>
-        </Nav>
-    );
+  return (
+    <Nav
+      className={isScrolled ? 'scrolled' : ''}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Logo onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        UMC App
+      </Logo>
+      <NavLinks>
+        <NavLink onClick={() => scrollToSection('problem')}>Why UMC App</NavLink>
+        <NavLink onClick={() => scrollToSection('goals')}>Goals</NavLink>
+        <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
+        <NavLink onClick={() => scrollToSection('modules')}>Modules</NavLink>
+        <NavLink onClick={() => scrollToSection('impact')}>Impact</NavLink>
+        <NavLink onClick={() => scrollToSection('team')}>Team</NavLink>
+      </NavLinks>
+    </Nav>
+  );
 };
 
 export default Navbar;

@@ -144,11 +144,12 @@ const ProblemSection = () => {
             User Research
           </Tag>
           <Title initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            UMC 부원들의 <br />
-            목소리를 직접 들었습니다
+            동아리 운영의 <br />
+            비효율을 해결했습니다
           </Title>
           <Desc initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            기존 동아리 운영의 불편함, 무엇이 문제였을까요?
+            분산된 도구, 누락되는 공지, 수동 출석 체크...<br />
+            성장을 방해하는 운영의 문제점들을 발견했습니다.
           </Desc>
         </Header>
 
@@ -159,8 +160,8 @@ const ProblemSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <Icon>😢</Icon>
-            <p>"디스코드 공지가 다른 잡담에 묻혀서 중요한 내용을 놓쳤어요."</p>
+            <Icon>🤯</Icon>
+            <p>"디스코드(공지), 구글시트(출석), 노션(문서)... 도구가 너무 분산되어 있어요."</p>
           </LeftBubble>
           <RightBubble
             initial={{ opacity: 0, x: 50 }}
@@ -168,8 +169,8 @@ const ProblemSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Icon>😤</Icon>
-            <p>"매번 노션 페이지 들어가서 내 출석 확인하기 너무 귀찮아요!"</p>
+            <Icon>📢</Icon>
+            <p>"중요한 공지가 채팅에 묻혀서 내용을 놓쳤어요. 확인 여부도 알 수 없고요."</p>
           </RightBubble>
           <LeftBubble
             initial={{ opacity: 0, x: -50 }}
@@ -177,8 +178,8 @@ const ProblemSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Icon>🤔</Icon>
-            <p>"우리 지부 말고 다른 학교 사람들은 뭘 하는지 전혀 모르겠어요."</p>
+            <Icon>📝</Icon>
+            <p>"매번 수동으로 출석 체크하다 보니 실수도 잦고 시간도 오래 걸려요."</p>
           </LeftBubble>
           <RightBubble
             initial={{ opacity: 0, x: 50 }}
@@ -186,8 +187,8 @@ const ProblemSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <Icon>🤯</Icon>
-            <p>"엑셀로 출석부 정리하다가 눈 빠질 뻔... 자동화가 시급해요."</p>
+            <Icon>💻</Icon>
+            <p>"외부에서 급하게 처리해야 하는데 PC가 없어서 아무것도 못했어요."</p>
           </RightBubble>
         </BubblesContainer>
 
@@ -197,15 +198,12 @@ const ProblemSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <InsightsBadge>Insights</InsightsBadge>
-          <InsightItem>
-            1. 분산된 도구(Discord, Notion)로 인한 <strong>정보 피로도</strong>
+          <InsightsBadge>Our Solution</InsightsBadge>
+          <InsightItem style={{ fontSize: '1.5rem', marginBottom: '10px', color: 'white' }}>
+            <strong>하나의 모바일 앱</strong>으로 모든 운영 도구를 통합하여
           </InsightItem>
-          <InsightItem>
-            2. 폐쇄적인 환경으로 인한 <strong>네트워킹 갈증</strong>
-          </InsightItem>
-          <InsightItem>
-            3. 수기 관리의 비효율과 <strong>모바일 경험 부재</strong>
+          <InsightItem style={{ fontSize: '1.5rem', color: 'var(--accent-fire)' }}>
+            효율성을 극대화합니다.
           </InsightItem>
         </InsightsBox>
       </Container>

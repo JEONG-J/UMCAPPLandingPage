@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProblemSection from './components/ProblemSection';
+import TargetAudience from './components/TargetAudience'; // Problem Story
+import StorySolution from './components/StorySolution'; // Solution Story
+import GoalSection from './components/GoalSection'; // Before/After Comparison
+import VisionSection from './components/VisionSection'; // Philosophy
 import FeatureShowcase from './components/FeatureShowcase';
-import GoalSection from './components/GoalSection';
-import TargetAudience from './components/TargetAudience';
+import ModuleGrid from './components/ModuleGrid';
+import ImpactSection from './components/ImpactSection';
 import TeamSection from './components/TeamSection';
 import Footer from './components/Footer';
 
@@ -46,40 +49,58 @@ const SectionWrapper = styled.div`
 `;
 
 function App() {
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-    return (
-        <MainContainer>
-            <NoiseOverlay />
-            <ProgressBar style={{ scaleX }} />
-            <Navbar />
+  return (
+    <MainContainer>
+      <NoiseOverlay />
+      <ProgressBar style={{ scaleX }} />
+      <Navbar />
 
-            <Hero />
+      <Hero />
 
-            <SectionWrapper id="problem">
-                <ProblemSection />
-            </SectionWrapper>
+      {/* Storytelling Flow: Problem -> Solution -> Comparison -> Vision */}
+      <SectionWrapper id="problem">
+        <TargetAudience />
+      </SectionWrapper>
 
-            <GoalSection />
+      <SectionWrapper id="solution">
+        <StorySolution />
+      </SectionWrapper>
 
-            <TargetAudience />
+      <SectionWrapper id="comparison">
+        <GoalSection />
+      </SectionWrapper>
 
-            <SectionWrapper id="features">
-                <FeatureShowcase />
-            </SectionWrapper>
+      <SectionWrapper id="vision">
+        <VisionSection />
+      </SectionWrapper>
 
-            <SectionWrapper id="team">
-                <TeamSection />
-            </SectionWrapper>
+      {/* Technical Proof & Details */}
+      <SectionWrapper id="features">
+        <FeatureShowcase />
+      </SectionWrapper>
 
-            <Footer />
-        </MainContainer>
-    );
+      <SectionWrapper id="modules">
+        <ModuleGrid />
+      </SectionWrapper>
+
+      <SectionWrapper id="impact">
+        <ImpactSection />
+      </SectionWrapper>
+
+      <SectionWrapper id="team">
+        <TeamSection />
+      </SectionWrapper>
+
+      <Footer />
+    </MainContainer>
+  );
 }
 
 export default App;
