@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 const Section = styled.section`
   padding: 140px 20px;
   background: linear-gradient(180deg, rgba(5,5,5,1) 0%, rgba(20,20,20,1) 100%);
+  
+  @media (max-width: 768px) {
+    padding: 80px 20px;
+  }
 `;
 
 const Container = styled.div`
@@ -30,6 +34,11 @@ const Tag = styled.span`
 const Title = styled.h2`
   font-size: 3rem;
   margin-bottom: 16px;
+  word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
 `;
 
 const FlowContainer = styled.div`
@@ -52,6 +61,11 @@ const Column = styled(motion.div)`
   gap: 0;
   align-items: center;
   max-width: 350px;
+  
+  @media (max-width: 768px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const Card = styled.div`
@@ -123,78 +137,78 @@ const Connector = styled.div`
 `;
 
 const GoalSection = () => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0 }
-    };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  };
 
-    return (
-        <Section id="goals">
-            <Container>
-                <SectionHeader>
-                    <Tag>Overview</Tag>
-                    <Title>문제를 해결하는 3가지 핵심</Title>
-                </SectionHeader>
+  return (
+    <Section id="goals">
+      <Container>
+        <SectionHeader>
+          <Tag>Overview</Tag>
+          <Title>문제를 해결하는 3가지 핵심</Title>
+        </SectionHeader>
 
-                <FlowContainer as={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                    {/* Column 1 */}
-                    <Column variants={itemVariants}>
-                        <ProblemCard>
-                            <Label>Problem 1</Label>
-                            <CardTitle dark>운영 도구의 파편화</CardTitle>
-                            <CardText dark>여러 툴을 왔다 갔다 하며<br />낭비되는 시간과 에너지</CardText>
-                        </ProblemCard>
-                        <Connector />
-                        <SolutionCard>
-                            <Label className="solution">Solution 1</Label>
-                            <CardTitle>All-in-One 관리</CardTitle>
-                            <CardText>출석, 공지, 회계까지<br />앱 하나로 <strong>Centralization</strong></CardText>
-                        </SolutionCard>
-                    </Column>
+        <FlowContainer as={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          {/* Column 1 */}
+          <Column variants={itemVariants}>
+            <ProblemCard>
+              <Label>Problem 1</Label>
+              <CardTitle dark>운영 도구의 파편화</CardTitle>
+              <CardText dark>여러 툴을 왔다 갔다 하며<br />낭비되는 시간과 에너지</CardText>
+            </ProblemCard>
+            <Connector />
+            <SolutionCard>
+              <Label className="solution">Solution 1</Label>
+              <CardTitle>All-in-One 관리</CardTitle>
+              <CardText>출석, 공지, 회계까지<br />앱 하나로 <strong>Centralization</strong></CardText>
+            </SolutionCard>
+          </Column>
 
-                    {/* Column 2 */}
-                    <Column variants={itemVariants}>
-                        <ProblemCard>
-                            <Label>Problem 2</Label>
-                            <CardTitle dark>PC 중심의 업무 환경</CardTitle>
-                            <CardText dark>현장에서 노트북을 켜야 하는<br />비효율적인 동선</CardText>
-                        </ProblemCard>
-                        <Connector />
-                        <SolutionCard>
-                            <Label className="solution">Solution 2</Label>
-                            <CardTitle>Mobile Admin</CardTitle>
-                            <CardText>언제 어디서나<br /><strong>스마트폰으로 즉시 처리</strong></CardText>
-                        </SolutionCard>
-                    </Column>
+          {/* Column 2 */}
+          <Column variants={itemVariants}>
+            <ProblemCard>
+              <Label>Problem 2</Label>
+              <CardTitle dark>PC 중심의 업무 환경</CardTitle>
+              <CardText dark>현장에서 노트북을 켜야 하는<br />비효율적인 동선</CardText>
+            </ProblemCard>
+            <Connector />
+            <SolutionCard>
+              <Label className="solution">Solution 2</Label>
+              <CardTitle>Mobile Admin</CardTitle>
+              <CardText>언제 어디서나<br /><strong>스마트폰으로 즉시 처리</strong></CardText>
+            </SolutionCard>
+          </Column>
 
-                    {/* Column 3 */}
-                    <Column variants={itemVariants}>
-                        <ProblemCard>
-                            <Label>Problem 3</Label>
-                            <CardTitle dark>지부 간 소통 단절</CardTitle>
-                            <CardText dark>타 학교/지부와 교류할 기회가<br />부족한 폐쇄성</CardText>
-                        </ProblemCard>
-                        <Connector />
-                        <SolutionCard>
-                            <Label className="solution">Solution 3</Label>
-                            <CardTitle>Open Community</CardTitle>
-                            <CardText>장벽 없이 소통하는<br /><strong>연합 게시판 활성화</strong></CardText>
-                        </SolutionCard>
-                    </Column>
-                </FlowContainer>
-            </Container>
-        </Section>
-    );
+          {/* Column 3 */}
+          <Column variants={itemVariants}>
+            <ProblemCard>
+              <Label>Problem 3</Label>
+              <CardTitle dark>지부 간 소통 단절</CardTitle>
+              <CardText dark>타 학교/지부와 교류할 기회가<br />부족한 폐쇄성</CardText>
+            </ProblemCard>
+            <Connector />
+            <SolutionCard>
+              <Label className="solution">Solution 3</Label>
+              <CardTitle>Open Community</CardTitle>
+              <CardText>장벽 없이 소통하는<br /><strong>연합 게시판 활성화</strong></CardText>
+            </SolutionCard>
+          </Column>
+        </FlowContainer>
+      </Container>
+    </Section>
+  );
 };
 
 export default GoalSection;

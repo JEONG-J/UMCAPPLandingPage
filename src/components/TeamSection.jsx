@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import jeongImg from '../assets/Profile/JeOng.jpg';
+import riverImg from '../assets/Profile/River.png';
+import jonathanImg from '../assets/Profile/Jonathan.jpeg';
 
 const Section = styled.section`
   padding: 120px 20px;
@@ -31,11 +34,13 @@ const Tag = styled.span`
 const Title = styled.h2`
   font-size: 3rem;
   margin-bottom: 16px;
+  word-break: keep-all;
 `;
 
 const Desc = styled.p`
   color: var(--text-secondary);
   font-size: 1.1rem;
+  word-break: keep-all;
 `;
 
 const Grid = styled.div`
@@ -71,7 +76,12 @@ const Avatar = styled.div`
   height: 80px;
   margin: 0 auto 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #333, #1a1a1a);
+  background-size: 110%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: ${props => props.$image ? `url(${props.$image})` : 'none'};
+  background-color: ${props => props.$image ? 'transparent' : 'linear-gradient(135deg, #333, #1a1a1a)'};
+  background: ${props => props.$image ? `url(${props.$image}) center / 110% no-repeat` : 'linear-gradient(135deg, #333, #1a1a1a)'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,15 +252,15 @@ const TeamSection = () => {
   const [selectedMember, setSelectedMember] = useState(null);
 
   const members = [
-    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / iOS / Design', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'Swift, SwiftUI, Combine', comment: 'iOS 파트를 이끌고 있습니다. 🍎', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'Swift, SwiftUI, Combine', comment: 'iOS 파트를 이끌고 있습니다. 🍎', image: riverImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'Java, Spring Boot, AWS', comment: '서버 아키텍처를 설계합니다. ☁️', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 5, name: '이희원 (삼이)', role: 'Android / iOS Design', stack: 'Figma, Adobe XD', comment: '사용자 경험을 디자인합니다. 🎨', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 6, name: '김미주 (마티)', role: 'iOS Developer', stack: 'Swift, UIKit', comment: '직관적인 인터페이스를 구현합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 7, name: '이예지 (소피)', role: 'iOS Developer', stack: 'Swift, SwiftUI', comment: '부드러운 모션과 인터랙션을 담당합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 8, name: '양지애 (나루)', role: 'Android Developer', stack: 'Kotlin, Android SDK', comment: '안정적인 앱 성능을 최적화합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 9, name: '조경석 (조나단)', role: 'Android Developer', stack: 'Kotlin, Coroutines', comment: '복잡한 비즈니스 로직을 해결합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 9, name: '조경석 (조나단)', role: 'Android Developer', stack: 'Kotlin, Coroutines', comment: '복잡한 비즈니스 로직을 해결합니다.', image: jonathanImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 10, name: '김도연 (도리)', role: 'Android Developer', stack: 'Kotlin, Compose', comment: '깔끔한 UI/UX를 구현합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 11, name: '강하나 (와나)', role: 'Server Developer', stack: 'Java, Spring Data JPA', comment: '데이터베이스 설계와 API를 개발합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 12, name: '박지현 (박박지현)', role: 'Server Developer', stack: 'Java, Spring Security', comment: '보안과 인증 시스템을 담당합니다.', social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
@@ -278,7 +288,9 @@ const TeamSection = () => {
               onClick={() => setSelectedMember(member)}
               layoutId={`card-${member.id}`}
             >
-              <Avatar>{member.name.split('(')[1].replace(')', '')}</Avatar>
+              <Avatar $image={member.image}>
+                {!member.image && member.name.split('(')[1].replace(')', '')}
+              </Avatar>
               <Name>{member.name}</Name>
               <Role>{member.role}</Role>
             </TeamCard>
@@ -300,7 +312,9 @@ const TeamSection = () => {
             >
               <CloseButton onClick={() => setSelectedMember(null)}>×</CloseButton>
 
-              <ModalAvatar>{selectedMember.id}</ModalAvatar>
+              <ModalAvatar $image={selectedMember.image}>
+                {!selectedMember.image && selectedMember.id}
+              </ModalAvatar>
               <ModalName>{selectedMember.name}</ModalName>
               <ModalRole>{selectedMember.role}</ModalRole>
 

@@ -8,6 +8,10 @@ const Section = styled.section`
     padding: 120px 20px;
     background: #111;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 80px 20px;
+    }
 `;
 
 const Container = styled.div`
@@ -33,6 +37,7 @@ const Title = styled.h2`
     font-size: 2.5rem;
     color: #eee;
     font-weight: 700;
+    word-break: keep-all;
 `;
 
 const PersonaContainer = styled.div`
@@ -48,8 +53,8 @@ const PersonaRow = styled(motion.div)`
     gap: 40px;
     
     @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: column !important;
+        gap: 40px;
     }
 `;
 
@@ -118,6 +123,7 @@ const CardTitle = styled.h3`
     font-weight: 800;
     margin-bottom: 20px;
     color: var(--accent-fire);
+    word-break: keep-all;
 `;
 
 const List = styled.ul`
@@ -135,6 +141,7 @@ const ListItem = styled.li`
     position: relative;
     padding-left: 20px;
     color: #444;
+    word-break: keep-all;
 
     &::before {
         content: '•';
