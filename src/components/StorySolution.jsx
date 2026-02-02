@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import challengerImg from '../assets/challenger.png';
-import adminImg from '../assets/admin.png';
+import challengerImg from '../assets/challenger_smile.png';
+import adminImg from '../assets/admin_smile.png';
 
 const Section = styled.section`
     padding: 140px 20px;
     background: #0a0a0a; /* Slightly lighter than pure black for contrast with Problem section */
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
+
     position: relative;
 
     &::before {
@@ -49,7 +54,7 @@ const Title = styled.h2`
     line-height: 1.3;
 
     @media (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 2.8rem;
     }
 `;
 
@@ -137,6 +142,7 @@ const StoryText = styled.p`
     }
 `;
 
+
 const PersonaInfo = styled.div`
     display: flex;
     align-items: center;
@@ -190,10 +196,10 @@ const StorySolution = () => {
                                 <Role>Efficient Leader</Role>
                             </PersonaInfo>
                             <StoryText>
-                                "이제는 출퇴근길에 스마트폰으로 모든 걸 확인해요.
+                                이제는 출퇴근길에 스마트폰으로 모든 걸 확인해요.
                                 누가 공지를 읽었는지 실시간으로 보이니까 따로 확인 연락할 필요도 없어요.<br /><br />
                                 예전엔 매주 5시간씩 관리 업무에 쓰던 시간이 <strong>이제는 1시간 반이면 충분해요.</strong><br /><br />
-                                남는 시간에는 챌린저들이랑 커피 마시면서 진짜 중요한 이야기를 나눌 수 있게 됐어요. '운영'이 아니라 '성장'에 집중할 수 있게 된 거죠."
+                                남는 시간에는 챌린저들이랑 커피 마시면서 진짜 중요한 이야기를 나눌 수 있게 됐어요. '운영'이 아니라 '성장'에 집중할 수 있게 된 거죠.
                             </StoryText>
                         </ContentCard>
                     </PersonaRow>
@@ -214,10 +220,10 @@ const StorySolution = () => {
                                 <Role>Proactive Member</Role>
                             </PersonaInfo>
                             <StoryText>
-                                "아침에 일어나면 앱 알림 하나로 오늘 일정을 확인해요.
+                                아침에 일어나면 앱 알림 하나로 오늘 일정을 확인해요.
                                 공지도 한 곳에서 다 보이고, 중요한 건 투표로 바로 의견 표시할 수 있어요.<br /><br />
                                 스터디 장소에 도착하면 <strong>자동으로 출석 체크되니까 신경 쓸 것도 없고 편해요.</strong><br /><br />
-                                이제는 '정보 찾기'가 아니라 '활동 자체'에 집중할 수 있어요."
+                                이제는 '정보 찾기'가 아니라 '활동 자체'에 집중할 수 있어요.
                             </StoryText>
                         </ContentCard>
                     </PersonaRow>

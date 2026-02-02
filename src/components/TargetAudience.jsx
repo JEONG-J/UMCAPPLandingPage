@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -12,7 +10,7 @@ const Section = styled.section`
     overflow: hidden;
 
     @media (max-width: 768px) {
-        padding: 80px 20px;
+        padding: 60px 20px;
     }
 `;
 
@@ -110,13 +108,6 @@ const ContentCard = styled.div`
     }
 `;
 
-const QuoteMark = styled.div`
-    font-size: 4rem;
-    color: #333;
-    line-height: 1;
-    margin-bottom: -20px;
-    font-family: serif;
-`;
 
 const StoryText = styled.p`
     font-size: 1.25rem;
@@ -187,12 +178,11 @@ const TargetAudience = () => {
                                 <Name>운영진 민지의 하루</Name>
                                 <Role>PM / 24세</Role>
                             </PersonaInfo>
-                            <QuoteMark>“</QuoteMark>
                             <StoryText>
-                                "오늘도 디스코드에 공지 올렸는데 읽은 사람이 몇 명인지 모르겠어요.
+                                오늘도 디스코드에 공지 올렸는데 읽은 사람이 몇 명인지 모르겠어요.
                                 구글시트 열어서 출석 체크하고, 노션에 자료 정리하고...
                                 밤 12시가 넘어서야 오늘 할 일이 끝났네요.<br /><br />
-                                <strong>동아리 운영하려고 들어왔는데 관리 업무에 치여서 정작 챌린저들과 제대로 소통도 못 하고 있어요.</strong>"
+                                <strong>동아리 운영하려고 들어왔는데 관리 업무에 치여서 정작 챌린저들과 제대로 소통도 못 하고 있어요.</strong>
                             </StoryText>
                         </ContentCard>
                     </PersonaRow>
@@ -212,11 +202,10 @@ const TargetAudience = () => {
                                 <Name>챌린저 준호의 고민</Name>
                                 <Role>Developer / 22세</Role>
                             </PersonaInfo>
-                            <QuoteMark>“</QuoteMark>
                             <StoryText>
-                                "어디서 공지를 봤는지 기억이 안 나요. 디스코드? 카톡? 아니면 노션이었나?
+                                어디서 공지를 봤는지 기억이 안 나요. 디스코드? 카톡? 아니면 노션이었나?
                                 찾다가 10분은 날린 것 같아요.<br /><br />
-                                <strong>내가 출석했는지 안 했는지도 헷갈려요. 그냥 앱 하나로 다 되면 안 되나요?</strong>"
+                                <strong>내가 출석했는지 안 했는지도 헷갈려요. 그냥 앱 하나로 다 되면 안 되나요?</strong>
                             </StoryText>
                         </ContentCard>
                     </PersonaRow>

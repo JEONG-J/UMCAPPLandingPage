@@ -4,17 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import jeongImg from '../assets/Profile/JeOng.jpg';
 import riverImg from '../assets/Profile/River.png';
 import jonathanImg from '../assets/Profile/Jonathan.jpeg';
-import haneulImg from '../assets/Profile/하늘.jpeg';
-import euheotchaImg from '../assets/Profile/어헛차.jpg';
-import samiImg from '../assets/Profile/삼이.jpg';
-import martiImg from '../assets/Profile/마티.jpeg';
-import sophieImg from '../assets/Profile/소피.jpg';
-import naruImg from '../assets/Profile/나루.png';
-import doriImg from '../assets/Profile/도리.png';
-import wanaImg from '../assets/Profile/와나.jpg';
-import parkparkImg from '../assets/Profile/박박지현.jpeg';
-import seniImg from '../assets/Profile/세니.jpeg';
-import seueupImg from '../assets/Profile/스읍.png';
+import haneulImg from '../assets/Profile/Haneul.jpeg';
+import euheotchaImg from '../assets/Profile/Euheotcha.jpg';
+import samiImg from '../assets/Profile/Sami.jpg';
+import martiImg from '../assets/Profile/Marti.jpeg';
+import sophieImg from '../assets/Profile/Sophie.jpg';
+import naruImg from '../assets/Profile/Naru.png';
+import doriImg from '../assets/Profile/Dori.png';
+import wanaImg from '../assets/Profile/Wana.jpg';
+import parkparkImg from '../assets/Profile/ParkPark.jpeg';
+import seniImg from '../assets/Profile/Seni.jpeg';
+import seueupImg from '../assets/Profile/Seueup.png';
 
 const Section = styled.section`
   padding: 120px 20px;

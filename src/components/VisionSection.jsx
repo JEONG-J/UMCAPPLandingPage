@@ -10,6 +10,10 @@ const Section = styled.section`
     position: relative;
     overflow: hidden;
 
+    @media (max-width: 768px) {
+        padding: 80px 20px;
+    }
+
     &::before {
         content: '';
         position: absolute;

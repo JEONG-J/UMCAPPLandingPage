@@ -8,7 +8,7 @@ const Section = styled.section`
   position: relative;
   
   @media (max-width: 768px) {
-    padding: 80px 20px;
+    padding: 60px 20px;
   }
 `;
 
@@ -56,8 +56,8 @@ const ComparisonContainer = styled.div`
 
 const ComparisonCol = styled(motion.div)`
   flex: 1;
-  background: ${props => props.isAfter ? 'rgba(68, 138, 255, 0.05)' : 'rgba(255, 82, 82, 0.05)'};
-  border: 1px solid ${props => props.isAfter ? 'rgba(68, 138, 255, 0.2)' : 'rgba(255, 82, 82, 0.2)'};
+  background: ${props => props.$isAfter ? 'rgba(68, 138, 255, 0.05)' : 'rgba(255, 82, 82, 0.05)'};
+  border: 1px solid ${props => props.$isAfter ? 'rgba(68, 138, 255, 0.2)' : 'rgba(255, 82, 82, 0.2)'};
   border-radius: 24px;
   padding: 40px;
   position: relative;
@@ -71,7 +71,7 @@ const ComparisonCol = styled(motion.div)`
     font-size: 3rem;
     font-weight: 900;
     opacity: 0.05;
-    color: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+    color: ${props => props.$isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
     text-transform: uppercase;
   }
 `;
@@ -79,7 +79,7 @@ const ComparisonCol = styled(motion.div)`
 const ColHeader = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 30px;
-  color: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+  color: ${props => props.$isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
   display: flex;
   align-items: center;
   gap: 10px;
@@ -104,7 +104,7 @@ const ListItem = styled.li`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: ${props => props.isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
+    background: ${props => props.$isAfter ? 'var(--accent-blue)' : 'var(--accent-fire)'};
     flex-shrink: 0;
   }
 `;
@@ -121,39 +121,39 @@ const GoalSection = () => {
         <ComparisonContainer>
           {/* Before Column */}
           <ComparisonCol
-            isAfter={false}
+            $isAfter={false}
             label="Before"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <ColHeader isAfter={false}>Before UMC App</ColHeader>
+            <ColHeader $isAfter={false}>Before UMC App</ColHeader>
             <List>
-              <ListItem isAfter={false}><div className="dot" /> 5개 이상의 플랫폼 왔다 갔다</ListItem>
-              <ListItem isAfter={false}><div className="dot" /> 공지 누락으로 인한 혼란</ListItem>
-              <ListItem isAfter={false}><div className="dot" /> 수동 출석 체크의 불편함</ListItem>
-              <ListItem isAfter={false}><div className="dot" /> 운영진의 번아웃</ListItem>
-              <ListItem isAfter={false}><div className="dot" /> 챌린저의 낮은 참여도</ListItem>
+              <ListItem $isAfter={false}><div className="dot" /> 5개 이상의 플랫폼 왔다 갔다</ListItem>
+              <ListItem $isAfter={false}><div className="dot" /> 공지 누락으로 인한 혼란</ListItem>
+              <ListItem $isAfter={false}><div className="dot" /> 수동 출석 체크의 불편함</ListItem>
+              <ListItem $isAfter={false}><div className="dot" /> 운영진의 번아웃</ListItem>
+              <ListItem $isAfter={false}><div className="dot" /> 챌린저의 낮은 참여도</ListItem>
             </List>
           </ComparisonCol>
 
           {/* After Column */}
           <ComparisonCol
-            isAfter={true}
+            $isAfter={true}
             label="After"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <ColHeader isAfter={true}>After UMC App</ColHeader>
+            <ColHeader $isAfter={true}>After UMC App</ColHeader>
             <List>
-              <ListItem isAfter={true}><div className="dot" /> 하나의 앱으로 모든 것 해결</ListItem>
-              <ListItem isAfter={true}><div className="dot" /> 100% 확인 가능한 공지 시스템</ListItem>
-              <ListItem isAfter={true}><div className="dot" /> 자동화된 스마트 출석</ListItem>
-              <ListItem isAfter={true}><div className="dot" /> 언제 어디서나 관리 가능</ListItem>
-              <ListItem isAfter={true}><div className="dot" /> 성장에 집중하는 동아리 문화</ListItem>
+              <ListItem $isAfter={true}><div className="dot" /> 하나의 앱으로 모든 것 해결</ListItem>
+              <ListItem $isAfter={true}><div className="dot" /> 100% 확인 가능한 공지 시스템</ListItem>
+              <ListItem $isAfter={true}><div className="dot" /> 자동화된 스마트 출석</ListItem>
+              <ListItem $isAfter={true}><div className="dot" /> 언제 어디서나 관리 가능</ListItem>
+              <ListItem $isAfter={true}><div className="dot" /> 성장에 집중하는 동아리 문화</ListItem>
             </List>
           </ComparisonCol>
         </ComparisonContainer>
