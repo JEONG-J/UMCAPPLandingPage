@@ -108,7 +108,6 @@ const ContentCard = styled.div`
     }
 `;
 
-
 const StoryText = styled.p`
     font-size: 1.25rem;
     line-height: 1.7;

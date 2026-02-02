@@ -142,7 +142,6 @@ const StoryText = styled.p`
     }
 `;
 
-
 const PersonaInfo = styled.div`
     display: flex;
     align-items: center;
