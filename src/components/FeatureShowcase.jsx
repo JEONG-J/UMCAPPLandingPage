@@ -457,7 +457,7 @@ const FeatureShowcase = () => {
         </SegmentControl>
 
         <FeaturesGrid>
-          {/* Feature 1: QR Attendance */}
+          {/* Feature 1: Home Tab */}
           <FeatureItem
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -465,11 +465,13 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6 }}
           >
             <FeatureText>
-              <h3><span className="gradient-text">1. The Ping</span> - 공지 수신 확인</h3>
-              <p>누가 공지를 읽었는지 실시간으로 확인하세요.<br />중요한 내용이 묻히지 않도록 보장합니다.</p>
+              <h3><span className="gradient-text">1. 홈 (Home)</span> - 활동의 중심 허브</h3>
+              <p>동아리 활동의 모든 정보를 한눈에 확인하세요.<br />
+                누적 활동일수부터 오늘 세션, 경고 현황, 공지까지 모든 중요 정보를 메인에서 놓치지 않도록 제공합니다.</p>
               <List>
-                <li>투표 및 확인 상태 실시간 추적</li>
-                <li>대상별 필터링 (기수/파트/학교별)</li>
+                <li>시즌 정보 카드 & 세대별 경고 현황 관리</li>
+                <li>인터랙티브 캘린더 & 일정 상세보기</li>
+                <li>최근 공지사항 퀵뷰 & 알림 히스토리</li>
               </List>
             </FeatureText>
 
@@ -481,12 +483,33 @@ const FeatureShowcase = () => {
                   label="iOS"
                   zIndex={10}
                   styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="출석 체크"
+                  appTitle="홈"
                 >
-                  <PhoneHeader $type="ios">Attendance</PhoneHeader>
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <QRMock>QR Code</QRMock>
-                    <BtnMock>출석하기</BtnMock>
+                  <PhoneHeader $type="ios">Home</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ background: '#222', borderRadius: '16px', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#888' }}>이번 시즌 활동일수</div>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>D+42</div>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                      <div style={{ background: '#1c1c1e', borderRadius: '12px', height: '80px', padding: '12px', border: '1px solid #333' }}>
+                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#ff3b30', marginBottom: '8px' }}></div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Next Session</div>
+                      </div>
+                      <div style={{ background: '#1c1c1e', borderRadius: '12px', height: '80px', padding: '12px', border: '1px solid #333' }}>
+                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#34c759', marginBottom: '8px' }}></div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>My Status</div>
+                      </div>
+                    </div>
+                    <div style={{ background: '#2c2c2e', borderRadius: '16px', padding: '16px' }}>
+                      <div style={{ fontSize: '0.9rem', marginBottom: '10px', color: '#fff' }}>최근 공지</div>
+                      <ListItemMock style={{ height: '40px', background: 'transparent', borderBottom: '1px solid #3a3a3a', borderRadius: 0, padding: 0 }}>
+                        <span style={{ fontSize: '0.75rem', color: '#ccc' }}>[필독] 3주차 세션 안내</span>
+                      </ListItemMock>
+                      <ListItemMock style={{ height: '40px', background: 'transparent', borderRadius: 0, padding: 0 }}>
+                        <span style={{ fontSize: '0.75rem', color: '#888' }}>회비 납부 안내</span>
+                      </ListItemMock>
+                    </div>
                   </div>
                 </PhoneMockup>
               )}
@@ -498,19 +521,31 @@ const FeatureShowcase = () => {
                   label="Android"
                   zIndex={10}
                   styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="출석 체크"
+                  appTitle="홈"
                 >
-                  <PhoneHeader $type="android">Attendance</PhoneHeader>
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <QRMock>QR Code</QRMock>
-                    <BtnMock style={{ background: '#00C853' }}>출석 확인</BtnMock>
+                  <PhoneHeader $type="android">Home</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div style={{ background: '#2d3135', borderRadius: '24px', padding: '20px' }}>
+                      <div style={{ fontSize: '0.9rem', color: '#3ddc84', marginBottom: '4px' }}>Activity Days</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff' }}>42</div>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', padding: '10px', background: '#1e1e1e', borderRadius: '16px' }}>
+                      {[...Array(7)].map((_, i) => (
+                        <div key={i} style={{ aspectRatio: '1', borderRadius: '50%', background: i === 3 ? '#3ddc84' : '#333' }}></div>
+                      ))}
+                    </div>
+                    <FeedCardMock style={{ background: '#1e1e1e', flexDirection: 'column', gap: '8px' }}>
+                      <div style={{ fontSize: '0.8rem', color: '#aaa' }}>UPCOMING</div>
+                      <div style={{ fontSize: '1rem', color: '#fff', fontWeight: 'bold' }}>Server Deployment</div>
+                      <div style={{ fontSize: '0.8rem', color: '#666' }}>Sat, 14:00 PM</div>
+                    </FeedCardMock>
                   </div>
                 </PhoneMockup>
               )}
             </DualVisualContainer>
           </FeatureItem>
 
-          {/* Feature 2: Mobile Admin */}
+          {/* Feature 2: Notice Tab */}
           <FeatureItem
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -519,37 +554,17 @@ const FeatureShowcase = () => {
             style={{ direction: 'rtl' }}
           >
             <FeatureText style={{ direction: 'ltr' }}>
-              <h3><span className="gradient-text">2. GPS 기반 스마트 출석</span></h3>
-              <p>QR보다 빠르고 정확합니다.<br />지정된 장소에서 자동으로 출석을 인증하세요.</p>
+              <h3><span className="gradient-text">2. 공지 (Notice)</span> - The Ping</h3>
+              <p>중요한 정보를 놓치지 않는 혁신, The Ping.<br />
+                디스코드와 노션에 흩어진 공지를 한곳에서 확인하고, 공지 수신 확인 시스템으로 누가 읽었는지 실시간으로 추적합니다.</p>
               <List>
-                <li>Geofence 기술로 위치 기반 자동 체크</li>
-                <li>시간 윈도우 자동 체크 (정시/지각/결석)</li>
+                <li>세대/파트/카테고리 다중 필터 & 전체 검색</li>
+                <li>공지 수신 확인 추적 (The Ping) & 투표 시스템</li>
+                <li>사진과 링크가 포함된 멀티미디어 공지 에디터</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer style={{ direction: 'ltr' }}>
-              {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="관리자 모드"
-                >
-                  <PhoneHeader $type="android">Admin Mode</PhoneHeader>
-                  <ListItemMock $warn>
-                    <span style={{ fontSize: '0.75rem' }}>김철수 (3회 경고)</span>
-                    <div style={{ width: 30, height: 16, background: '#444', borderRadius: 4 }}></div>
-                  </ListItemMock>
-                  <ListItemMock>
-                    <span style={{ fontSize: '0.75rem' }}>이영희 (정상)</span>
-                    <div style={{ width: 30, height: 16, background: '#444', borderRadius: 4 }}></div>
-                  </ListItemMock>
-                  <div style={{ marginTop: 'auto', marginBottom: 20, alignSelf: 'flex-end', width: 40, height: 40, borderRadius: '50%', background: '#00C853', boxShadow: '0 4px 8px rgba(0,0,0,0.3)' }}></div>
-                </PhoneMockup>
-              )}
-
               {activePlatform === 'ios' && (
                 <PhoneMockup
                   key="ios"
@@ -557,24 +572,65 @@ const FeatureShowcase = () => {
                   label="iOS"
                   zIndex={10}
                   styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="Admin"
+                  appTitle="공지"
                 >
-                  <PhoneHeader $type="ios">Admin Mode</PhoneHeader>
-                  <ListItemMock $warn>
-                    <span style={{ fontSize: '0.75rem' }}>Warning List</span>
-                    <div style={{ width: 30, height: 16, background: '#ff5252', borderRadius: 4 }}></div>
-                  </ListItemMock>
-                  <ListItemMock>
-                    <span style={{ fontSize: '0.75rem' }}>Regular List</span>
-                    <div style={{ width: 30, height: 16, background: '#444', borderRadius: 4 }}></div>
-                  </ListItemMock>
-                  <div style={{ marginTop: 'auto', marginBottom: 20, alignSelf: 'flex-end', width: 40, height: 40, borderRadius: '50%', background: 'var(--accent-blue)', boxShadow: '0 4px 8px rgba(0,0,0,0.3)' }}></div>
+                  <PhoneHeader $type="ios">The Ping</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
+                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: '#333', color: '#fff', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>전체</div>
+                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: 'var(--accent-blue)', color: '#fff', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>필독</div>
+                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: '#333', color: '#aaa', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>일반</div>
+                    </div>
+                    <FeedCardMock style={{ alignItems: 'flex-start' }}>
+                      <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: '#ff3b30', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>!</div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', color: '#fff' }}>[긴급] 서버 점검 안내</div>
+                        <div style={{ fontSize: '0.75rem', color: '#aaa' }}>2024.03.15 14:00</div>
+                        <div style={{ marginTop: '8px', fontSize: '0.7rem', color: '#34c759' }}>✓ 128명 읽음</div>
+                      </div>
+                    </FeedCardMock>
+                    <FeedCardMock>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', color: '#fff' }}>3월 정기 세션 자료</div>
+                        <div style={{ width: '100%', height: '80px', background: '#333', borderRadius: '8px', marginTop: '8px' }}></div>
+                      </div>
+                    </FeedCardMock>
+                  </div>
+                </PhoneMockup>
+              )}
+              {activePlatform === 'android' && (
+                <PhoneMockup
+                  key="android"
+                  type="android"
+                  label="Android"
+                  zIndex={10}
+                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
+                  appTitle="공지"
+                >
+                  <PhoneHeader $type="android">Notices</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div style={{ position: 'relative' }}>
+                      <div style={{ height: '40px', background: '#222', borderRadius: '20px', display: 'flex', alignItems: 'center', padding: '0 16px', color: '#aaa', fontSize: '0.9rem' }}>Search notices...</div>
+                    </div>
+                    <ListItemMock style={{ flexDirection: 'column', alignItems: 'flex-start', height: 'auto', padding: '16px', gap: '8px' }}>
+                      <div style={{ padding: '2px 8px', borderRadius: '4px', background: 'rgba(61, 220, 132, 0.2)', color: '#3ddc84', fontSize: '0.7rem', width: 'fit-content' }}>MUST READ</div>
+                      <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>Session Schedule Change</div>
+                      <div style={{ width: '100%', height: '4px', background: '#333', borderRadius: '2px', marginTop: '4px' }}>
+                        <div style={{ width: '80%', height: '100%', background: '#3ddc84', borderRadius: '2px' }}></div>
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#aaa', alignSelf: 'flex-end' }}>80% Read</div>
+                    </ListItemMock>
+                    <ListItemMock style={{ height: 'auto', padding: '16px' }}>
+                      <div style={{ fontSize: '0.9rem' }}>General Inquiry</div>
+                      <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Yesterday</div>
+                    </ListItemMock>
+                  </div>
                 </PhoneMockup>
               )}
             </DualVisualContainer>
           </FeatureItem>
 
-          {/* Feature 3: Community */}
+          {/* Feature 3: Activity Tab */}
           <FeatureItem
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -582,11 +638,13 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6 }}
           >
             <FeatureText>
-              <h3><span className="gradient-text">3. Mobile-First Admin</span></h3>
-              <p>PC 없이도 완벽한 운영이 가능합니다.<br />언제 어디서나 동아리를 관리하세요.</p>
+              <h3><span className="gradient-text">3. 활동 (Activity)</span> - Dual Mode</h3>
+              <p>챌린저와 운영진, 두 가지 모드로 완벽한 활동 관리를 지원합니다.<br />
+                지오펜싱 기반 스마트 출석부터 커리큘럼, 미션 관리까지 하나의 앱에서 해결하세요.</p>
               <List>
-                <li>모바일에서 바로 멤버 및 일정 관리</li>
-                <li>실시간 알림으로 이슈 즉각 대응</li>
+                <li>GPS 기반 스마트 출석 & 지오펜싱(Geofencing)</li>
+                <li>커리큘럼 진행도 & 주차별 미션 카드</li>
+                <li>Admin 모드: 출석 관리, 스터디 생성, 멤버 관리</li>
               </List>
             </FeatureText>
 
@@ -598,26 +656,108 @@ const FeatureShowcase = () => {
                   label="iOS"
                   zIndex={10}
                   styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="Community"
+                  appTitle="활동"
                 >
-                  <PhoneHeader $type="ios">Community</PhoneHeader>
-                  <FeedCardMock>
-                    <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#444' }}></div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ width: '60%', height: 8, background: '#333', borderRadius: 4, marginBottom: 6 }}></div>
-                      <div style={{ width: '90%', height: 8, background: '#333', borderRadius: 4 }}></div>
+                  <PhoneHeader $type="ios">Activity</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', justifyContent: 'center' }}>
+                    <div style={{ width: '160px', height: '160px', borderRadius: '50%', background: 'conic-gradient(var(--accent-blue) 0% 75%, #333 75% 100%)', margin: '0 auto', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: '130px', height: '130px', borderRadius: '50%', background: '#111', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>75%</span>
+                        <span style={{ fontSize: '0.7rem', color: '#888' }}>Attendance</span>
+                      </div>
                     </div>
-                  </FeedCardMock>
-                  <FeedCardMock>
-                    <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#444' }}></div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ width: '50%', height: 8, background: '#333', borderRadius: 4, marginBottom: 6 }}></div>
-                      <div style={{ width: '80%', height: 8, background: '#333', borderRadius: 4 }}></div>
+                    <BtnMock style={{ marginTop: '20px' }}>GPS 출석하기</BtnMock>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', fontSize: '0.8rem', color: '#666' }}>
+                      <span>📍 Location Verified</span>
                     </div>
-                  </FeedCardMock>
+                  </div>
+                </PhoneMockup>
+              )}
+              {activePlatform === 'android' && (
+                <PhoneMockup
+                  key="android"
+                  type="android"
+                  label="Android"
+                  zIndex={10}
+                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
+                  appTitle="활동"
+                >
+                  <PhoneHeader $type="android">Activity</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ background: '#2d3135', borderRadius: '16px', padding: '6px', display: 'flex', marginBottom: '10px' }}>
+                      <div style={{ flex: 1, padding: '8px', textAlign: 'center', background: '#3ddc84', color: '#000', borderRadius: '12px', fontWeight: 'bold' }}>Challenger</div>
+                      <div style={{ flex: 1, padding: '8px', textAlign: 'center', color: '#aaa' }}>Admin</div>
+                    </div>
+                    <ListItemMock style={{ background: '#1e1e1e', justifyContent: 'flex-start', gap: '16px' }}>
+                      <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📚</div>
+                      <div>
+                        <div style={{ fontSize: '0.9rem' }}>Mission 03</div>
+                        <div style={{ fontSize: '0.7rem', color: '#3ddc84' }}>Completed</div>
+                      </div>
+                    </ListItemMock>
+                    <ListItemMock style={{ background: '#1e1e1e', justifyContent: 'flex-start', gap: '16px' }}>
+                      <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📍</div>
+                      <div>
+                        <div style={{ fontSize: '0.9rem' }}>Geofence Setup</div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Admin Only</div>
+                      </div>
+                    </ListItemMock>
+                  </div>
                 </PhoneMockup>
               )}
 
+            </DualVisualContainer>
+          </FeatureItem>
+
+          {/* Feature 4: Community Tab */}
+          <FeatureItem
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ direction: 'rtl' }}
+          >
+            <FeatureText style={{ direction: 'ltr' }}>
+              <h3><span className="gradient-text">4. 커뮤니티 (Community)</span> - 4 Categories</h3>
+              <p>질문하고, 모이고, 인정받는 공간.<br />
+                전체, 질문, 번개모임, 명예의전당 4가지 카테고리로 체계화된 소통을 경험하세요.</p>
+              <List>
+                <li>4-카테고리 메뉴: 전체 / 질문 / 번개모임 / 명예의전당</li>
+                <li>게시글 작성, 상세 조회 및 댓글 시스템</li>
+                <li>우수 활동자를 위한 '명예의전당 (Hall of Fame)'</li>
+              </List>
+            </FeatureText>
+
+            <DualVisualContainer style={{ direction: 'ltr' }}>
+              {activePlatform === 'ios' && (
+                <PhoneMockup
+                  key="ios"
+                  type="ios"
+                  label="iOS"
+                  zIndex={10}
+                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
+                  appTitle="커뮤니티"
+                >
+                  <PhoneHeader $type="ios">Community</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+                      <div style={{ background: '#222', borderRadius: '12px', padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>🔥 번개모임</div>
+                      <div style={{ background: '#222', borderRadius: '12px', padding: '16px', textAlign: 'center', fontSize: '0.8rem', color: '#ffd700' }}>🏆 명예의전당</div>
+                    </div>
+                    <FeedCardMock>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#444' }}></div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', fontWeight: '600' }}>React 상태관리 질문입니다!</div>
+                        <div style={{ fontSize: '0.8rem', color: '#ccc', lineHeight: '1.4' }}>Recoil vs Redux 어떤걸 쓰는게 좋을까요? 프로젝트...</div>
+                        <div style={{ display: 'flex', gap: '10px', marginTop: '8px', fontSize: '0.7rem', color: '#888' }}>
+                          <span>💬 5</span>
+                          <span>❤️ 12</span>
+                        </div>
+                      </div>
+                    </FeedCardMock>
+                  </div>
+                </PhoneMockup>
+              )}
               {activePlatform === 'android' && (
                 <PhoneMockup
                   key="android"
@@ -628,20 +768,117 @@ const FeatureShowcase = () => {
                   appTitle="커뮤니티"
                 >
                   <PhoneHeader $type="android">Community</PhoneHeader>
-                  <FeedCardMock>
-                    <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#444' }}></div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ width: '70%', height: 8, background: '#333', borderRadius: 4, marginBottom: 6 }}></div>
-                      <div style={{ width: '90%', height: 8, background: '#333', borderRadius: 4 }}></div>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'flex', overflowX: 'auto', gap: '12px', paddingBottom: '10px', borderBottom: '1px solid #333' }}>
+                      <div style={{ color: '#fff', fontWeight: 'bold', borderBottom: '2px solid #fff', paddingBottom: '4px' }}>All</div>
+                      <div style={{ color: '#888' }}>Q&A</div>
+                      <div style={{ color: '#888' }}>Meetup</div>
                     </div>
-                  </FeedCardMock>
-                  <FeedCardMock>
-                    <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#444' }}></div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ width: '40%', height: 8, background: '#333', borderRadius: 4, marginBottom: 6 }}></div>
-                      <div style={{ width: '100%', height: 8, background: '#333', borderRadius: 4 }}></div>
+                    <FeedCardMock style={{ background: '#1e1e1e' }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.8rem', color: '#3ddc84', marginBottom: '4px' }}>Q&A</div>
+                        <div style={{ fontSize: '1rem', marginBottom: '4px' }}>Deployment Issue</div>
+                        <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Getting 502 error on nginx...</div>
+                      </div>
+                    </FeedCardMock>
+                    <FeedCardMock style={{ background: '#1e1e1e' }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '0.8rem', color: '#ffab00', marginBottom: '4px' }}>HALL OF FAME</div>
+                        <div style={{ fontSize: '1rem', marginBottom: '4px' }}>Best Contributor</div>
+                        <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Congratulations to Team A!</div>
+                      </div>
+                    </FeedCardMock>
+                  </div>
+                </PhoneMockup>
+              )}
+            </DualVisualContainer>
+          </FeatureItem>
+
+          {/* Feature 5: MyPage Tab */}
+          <FeatureItem
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <FeatureText>
+              <h3><span className="gradient-text">5. 마이페이지 (MyPage)</span> - Personal Dashboard</h3>
+              <p>내 활동을 관리하는 완벽한 개인 대시보드.<br />
+                프로필 설정부터 활동 로그, 소셜 계정 연동까지 8개 섹션으로 구조화된 개인 공간을 제공합니다.</p>
+              <List>
+                <li>GitHub, LinkedIn, Blog 등 외부 링크 연동</li>
+                <li>작성한 글, 댓글, 북마크 등 내 활동 히스토리</li>
+                <li>설정, 지원, 법률 정보 및 소셜 로그인 관리</li>
+              </List>
+            </FeatureText>
+
+            <DualVisualContainer>
+              {activePlatform === 'ios' && (
+                <PhoneMockup
+                  key="ios"
+                  type="ios"
+                  label="iOS"
+                  zIndex={10}
+                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
+                  appTitle="마이페이지"
+                >
+                  <PhoneHeader $type="ios">My Information</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '10px' }}>
+                      <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: '#333' }}></div>
+                      <div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Kim UMC</div>
+                        <div style={{ fontSize: '0.8rem', color: '#888' }}>Backend Developer</div>
+                      </div>
                     </div>
-                  </FeedCardMock>
+                    <div style={{ background: '#222', borderRadius: '12px', overflow: 'hidden' }}>
+                      <ListItemMock style={{ background: 'transparent', height: '50px', borderBottom: '1px solid #333', marginBottom: 0, borderRadius: 0 }}>
+                        <span style={{ fontSize: '0.9rem' }}>My Activity</span>
+                        <span style={{ color: '#666' }}>›</span>
+                      </ListItemMock>
+                      <ListItemMock style={{ background: 'transparent', height: '50px', borderBottom: '1px solid #333', marginBottom: 0, borderRadius: 0 }}>
+                        <span style={{ fontSize: '0.9rem' }}>Linked Accounts</span>
+                        <span style={{ color: '#666' }}>›</span>
+                      </ListItemMock>
+                      <ListItemMock style={{ background: 'transparent', height: '50px', marginBottom: 0, borderRadius: 0 }}>
+                        <span style={{ fontSize: '0.9rem' }}>Settings</span>
+                        <span style={{ color: '#666' }}>›</span>
+                      </ListItemMock>
+                    </div>
+                  </div>
+                </PhoneMockup>
+              )}
+              {activePlatform === 'android' && (
+                <PhoneMockup
+                  key="android"
+                  type="android"
+                  label="Android"
+                  zIndex={10}
+                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
+                  appTitle="마이페이지"
+                >
+                  <PhoneHeader $type="android">My Page</PhoneHeader>
+                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                      <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#333', margin: '0 auto 16px' }}></div>
+                      <div style={{ fontSize: '1.4rem', fontWeight: 'bold', marginBottom: '4px' }}>Lee Server</div>
+                      <div style={{ fontSize: '0.9rem', color: '#aaa' }}>Server / Node.js</div>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
+                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>12</div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Posts</div>
+                      </div>
+                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>5</div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Badges</div>
+                      </div>
+                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>850</div>
+                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Points</div>
+                      </div>
+                    </div>
+                  </div>
                 </PhoneMockup>
               )}
             </DualVisualContainer>
