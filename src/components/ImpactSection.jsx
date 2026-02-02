@@ -29,79 +29,93 @@ const Tag = styled.span`
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 16px;
-  color: #fff;
-`;
+  background: linear-gradient(90deg, #fff, #999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  word-break: keep-all;
 
-const ImpactGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  span {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
-const ImpactCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 40px 30px;
-  text-align: center;
+const ComparisonGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+`;
+
+const ComparisonCard = styled(motion.div)`
+  background: ${props => props.$type === 'before'
+        ? 'rgba(255, 59, 48, 0.05)'
+        : 'rgba(10, 132, 255, 0.05)'};
+  border: 1px solid ${props => props.$type === 'before'
+        ? 'rgba(255, 59, 48, 0.2)'
+        : 'rgba(10, 132, 255, 0.2)'};
+  border-radius: 24px;
+  padding: 50px 40px;
   position: relative;
+  overflow: hidden;
+
+  /* Watermark text */
+  &::after {
+    content: '${props => props.$type === 'before' ? 'BEFORE' : 'AFTER'}';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: ${props => props.$type === 'before'
+        ? 'rgba(255, 59, 48, 0.05)'
+        : 'rgba(10, 132, 255, 0.05)'};
+    z-index: 0;
+    pointer-events: none;
+  }
+`;
+
+const CardHeader = styled.h3`
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: ${props => props.$type === 'before' ? '#FF3B30' : '#0A84FF'};
+  position: relative;
+  z-index: 1;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+  color: #e0e0e0;
   
   &::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--gradient-main);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  &:hover::before {
-    transform: scaleX(1);
-  }
-`;
-
-const RoleTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-  color: #fff;
-`;
-
-const BenefitList = styled.ul`
-  list-style: none;
-  padding: 0;
-  text-align: left;
-`;
-
-const BenefitItem = styled.li`
-  margin-bottom: 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: #ccc;
-  line-height: 1.5;
-  
-  strong {
-    display: block;
-    color: #fff;
-    font-size: 1.05rem;
-    margin-bottom: 4px;
-  }
-  
-  span.icon {
-    font-size: 1.5rem;
-    line-height: 1;
-    margin-top: 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ${props => props.$type === 'before' ? '#FF3B30' : '#0A84FF'};
+    flex-shrink: 0;
   }
 `;
 
@@ -111,112 +125,126 @@ const ImpactSection = () => {
             <Container>
                 <Header>
                     <Tag>Impact</Tag>
-                    <Title>기대 효과</Title>
+                    <Title>
+                        UMC,<br />
+                        <span>이렇게 달라집니다</span>
+                    </Title>
                 </Header>
 
-                <ImpactGrid>
-                    {/* Admin */}
-                    <ImpactCard
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                <ComparisonGrid>
+                    {/* Before Card */}
+                    <ComparisonCard
+                        $type="before"
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <RoleTitle>운영진 입장</RoleTitle>
-                        <BenefitList>
-                            <BenefitItem>
-                                <span className="icon">⏱️</span>
-                                <div>
-                                    <strong>운영 시간 70% 절감</strong>
-                                    자동화된 출석과 통합 관리로 업무 효율화
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">📊</span>
-                                <div>
-                                    <strong>데이터 기반 의사결정</strong>
-                                    실시간 통계와 현황 파악으로 정확한 운영
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">📱</span>
-                                <div>
-                                    <strong>이동 중에도 관리 가능</strong>
-                                    모바일 퍼스트 설계로 장소 제약 해소
-                                </div>
-                            </BenefitItem>
-                        </BenefitList>
-                    </ImpactCard>
+                        <CardHeader $type="before">Before UMC App</CardHeader>
+                        <List>
+                            <ListItem $type="before">5개 이상의 플랫폼 왔다 갔다</ListItem>
+                            <ListItem $type="before">공지 누락으로 인한 혼란</ListItem>
+                            <ListItem $type="before">수동 출석 체크의 불편함</ListItem>
+                            <ListItem $type="before">운영진의 번아웃</ListItem>
+                            <ListItem $type="before">챌린저의 낮은 참여도</ListItem>
+                        </List>
+                    </ComparisonCard>
 
-                    {/* Member */}
-                    <ImpactCard
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                    {/* After Card */}
+                    <ComparisonCard
+                        $type="after"
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <RoleTitle>챌린저 입장</RoleTitle>
-                        <BenefitList>
-                            <BenefitItem>
-                                <span className="icon">🎯</span>
-                                <div>
-                                    <strong>정보 접근성 향상</strong>
-                                    모든 공지와 일정을 앱 하나에서 확인
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">⚡</span>
-                                <div>
-                                    <strong>빠른 의사소통</strong>
-                                    공지 확인과 투표가 즉시 가능
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">🌱</span>
-                                <div>
-                                    <strong>성장에 집중</strong>
-                                    복잡한 절차 없이 활동에만 몰입 가능
-                                </div>
-                            </BenefitItem>
-                        </BenefitList>
-                    </ImpactCard>
+                        <CardHeader $type="after">After UMC App</CardHeader>
+                        <List>
+                            <ListItem $type="after">하나의 앱으로 모든 것 해결</ListItem>
+                            <ListItem $type="after">100% 확인 가능한 공지 시스템</ListItem>
+                            <ListItem $type="after">자동화된 스마트 출석</ListItem>
+                            <ListItem $type="after">언제 어디서나 관리 가능</ListItem>
+                            <ListItem $type="after">성장에 집중하는 동아리 문화</ListItem>
+                        </List>
+                    </ComparisonCard>
+                </ComparisonGrid>
 
-                    {/* Club */}
-                    <ImpactCard
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                    >
-                        <RoleTitle>동아리 입장</RoleTitle>
-                        <BenefitList>
-                            <BenefitItem>
-                                <span className="icon">🚀</span>
-                                <div>
-                                    <strong>효율적인 운영 체계 구축</strong>
-                                    시스템화된 운영으로 지속 가능성 확보
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">💪</span>
-                                <div>
-                                    <strong>챌린저 만족도 상승</strong>
-                                    편리한 경험 제공으로 소속감 고취
-                                </div>
-                            </BenefitItem>
-                            <BenefitItem>
-                                <span className="icon">📈</span>
-                                <div>
-                                    <strong>데이터 축적으로 지속적 개선</strong>
-                                    활동 데이터 기반으로 더 나은 방향 모색
-                                </div>
-                            </BenefitItem>
-                        </BenefitList>
-                    </ImpactCard>
-                </ImpactGrid>
+                <KPIContainer
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                    <KPIItem>
+                        <KPINumber>100%</KPINumber>
+                        <KPILabel>공지 확인 및 도달률</KPILabel>
+                    </KPIItem>
+                    <Divider />
+                    <KPIItem>
+                        <KPINumber>90%</KPINumber>
+                        <KPILabel>운영 리소스 절감</KPILabel>
+                    </KPIItem>
+                    <Divider />
+                    <KPIItem>
+                        <KPINumber>0min</KPINumber>
+                        <KPILabel>출석 체크 소요 시간</KPILabel>
+                    </KPIItem>
+                </KPIContainer>
             </Container>
         </Section>
     );
 };
+
+const KPIContainer = styled(motion.div)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 24px;
+    }
+`;
+
+const KPIItem = styled.div`
+    text-align: center;
+    flex: 1;
+`;
+
+const KPINumber = styled.div`
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Outfit', sans-serif;
+`;
+
+const KPILabel = styled.div`
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    font-weight: 500;
+`;
+
+const Divider = styled.div`
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 40px;
+    
+    @media (max-width: 768px) {
+        width: 60px;
+        height: 1px;
+        margin: 20px 0;
+    }
+`;
 
 export default ImpactSection;

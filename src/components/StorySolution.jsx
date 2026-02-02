@@ -147,12 +147,14 @@ const PersonaInfo = styled.div`
     align-items: center;
     gap: 12px;
     margin-bottom: 24px;
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
 `;
 
 const Name = styled.h3`
     font-size: 1.4rem;
     font-weight: 700;
     color: white;
+    word-break: keep-all; /* Prevent awkward word breaks */
 `;
 
 const Role = styled.span`
@@ -163,6 +165,7 @@ const Role = styled.span`
     background: rgba(68, 138, 255, 0.1);
     color: var(--accent-blue);
     border: 1px solid rgba(68, 138, 255, 0.2);
+    white-space: nowrap; /* Keep text on one line */
 `;
 
 const StorySolution = () => {
@@ -191,11 +194,11 @@ const StorySolution = () => {
                         </MemojiWrapper>
                         <ContentCard>
                             <PersonaInfo>
-                                <Name>6개월 후, 민지의 변화</Name>
+                                <Name>민지의 변화</Name>
                                 <Role>Efficient Leader</Role>
                             </PersonaInfo>
                             <StoryText>
-                                이제는 출퇴근길에 스마트폰으로 모든 걸 확인해요.
+                                이제는 등교길에 스마트폰으로 모든 걸 확인해요.
                                 누가 공지를 읽었는지 실시간으로 보이니까 따로 확인 연락할 필요도 없어요.<br /><br />
                                 예전엔 매주 5시간씩 관리 업무에 쓰던 시간이 <strong>이제는 1시간 반이면 충분해요.</strong><br /><br />
                                 남는 시간에는 챌린저들이랑 커피 마시면서 진짜 중요한 이야기를 나눌 수 있게 됐어요. '운영'이 아니라 '성장'에 집중할 수 있게 된 거죠.

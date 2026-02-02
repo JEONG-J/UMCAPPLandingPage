@@ -90,7 +90,6 @@ const Navbar = () => {
       </Logo>
       <NavLinks>
         <NavLink onClick={() => scrollToSection('problem')}>Why UMC App</NavLink>
-        <NavLink onClick={() => scrollToSection('goals')}>Goals</NavLink>
         <NavLink onClick={() => scrollToSection('features')}>Features</NavLink>
         <NavLink onClick={() => scrollToSection('modules')}>Modules</NavLink>
         <NavLink onClick={() => scrollToSection('impact')}>Impact</NavLink>

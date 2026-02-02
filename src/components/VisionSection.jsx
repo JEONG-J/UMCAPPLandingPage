@@ -55,9 +55,10 @@ const MainHeading = styled(motion.h2)`
     background: linear-gradient(to right, #fff, #888);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-break: keep-all;
 
     @media (max-width: 768px) {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 `;
 
@@ -73,6 +74,11 @@ const TextBlock = styled.div`
         font-size: 1.8rem;
         margin-bottom: 16px;
         color: white;
+        word-break: keep-all;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
     }
 
     p {

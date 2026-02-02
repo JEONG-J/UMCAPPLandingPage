@@ -129,12 +129,14 @@ const PersonaInfo = styled.div`
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
 `;
 
 const Name = styled.h3`
     font-size: 1.4rem;
     font-weight: 700;
     color: white;
+    word-break: keep-all; /* Prevent awkward word breaks */
 `;
 
 const Role = styled.span`
@@ -145,6 +147,7 @@ const Role = styled.span`
     background: #222;
     color: #888;
     border: 1px solid #333;
+    white-space: nowrap; /* Keep text on one line */
 `;
 
 const TargetAudience = () => {
@@ -175,7 +178,7 @@ const TargetAudience = () => {
                         <ContentCard>
                             <PersonaInfo>
                                 <Name>운영진 민지의 하루</Name>
-                                <Role>PM / 24세</Role>
+                                <Role>회장 / 24세</Role>
                             </PersonaInfo>
                             <StoryText>
                                 오늘도 디스코드에 공지 올렸는데 읽은 사람이 몇 명인지 모르겠어요.

@@ -41,7 +41,8 @@ const Title = styled.h2`
   word-break: keep-all;
 
   @media (max-width: 768px) {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
   }
 `;
 

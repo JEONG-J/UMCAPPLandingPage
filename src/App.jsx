@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TargetAudience from './components/TargetAudience'; // Problem Story
 import StorySolution from './components/StorySolution'; // Solution Story
-import GoalSection from './components/GoalSection'; // Before/After Comparison
 import VisionSection from './components/VisionSection'; // Philosophy
 import FeatureShowcase from './components/FeatureShowcase';
 import ModuleGrid from './components/ModuleGrid';
@@ -73,9 +72,6 @@ function App() {
         <StorySolution />
       </SectionWrapper>
 
-      <SectionWrapper id="comparison">
-        <GoalSection />
-      </SectionWrapper>
 
       <SectionWrapper id="vision">
         <VisionSection />
