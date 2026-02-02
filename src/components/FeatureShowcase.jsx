@@ -317,32 +317,32 @@ const SegmentBtn = styled.button`
 
 // New styled components for platform-specific mockups
 const DualVisualContainer = styled(VisualContainer)`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 600px; /* Ensure enough space for mockups */
-  perspective: 1000px;
+position: relative;
+display: flex;
+justify - content: center;
+align - items: center;
+min - height: 600px; /* Ensure enough space for mockups */
+perspective: 1000px;
 `;
 
 const PhoneMockup = styled(motion.div)`
-  background: ${props => props.$type === 'ios' ? '#111' : '#1a1a1a'};
-  border: 1px solid ${props => props.$type === 'ios' ? '#333' : '#444'};
-  border-radius: ${props => props.$type === 'ios' ? '30px' : '24px'};
-  padding: ${props => props.$type === 'ios' ? '20px' : '16px'};
-  width: 320px;
-  height: 620px;
-  position: absolute;
-  z-index: ${props => props.zIndex || 1};
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-  display: flex;
-  flex-direction: column;
-  transform-origin: center center;
-  transform: rotateY(${props => props.styleProps.$rotate || 0}deg);
-  left: ${props => props.styleProps.$left || 'auto'};
-  right: ${props => props.styleProps.$right || 'auto'};
-  position: ${props => props.styleProps.position || 'absolute'};
-  transition: all 0.5s ease;
+background: ${props => props.$type === 'ios' ? '#111' : '#1a1a1a'};
+border: 1px solid ${props => props.$type === 'ios' ? '#333' : '#444'};
+border - radius: ${props => props.$type === 'ios' ? '30px' : '24px'};
+padding: ${props => props.$type === 'ios' ? '20px' : '16px'};
+width: 320px;
+height: 620px;
+position: absolute;
+z - index: ${props => props.zIndex || 1};
+box - shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+display: flex;
+flex - direction: column;
+transform - origin: center center;
+transform: rotateY(${props => props.styleProps.$rotate || 0}deg);
+left: ${props => props.styleProps.$left || 'auto'};
+right: ${props => props.styleProps.$right || 'auto'};
+position: ${props => props.styleProps.position || 'absolute'};
+transition: all 0.5s ease;
   
   &::before {
     content: '${props => props.label}';
@@ -373,6 +373,20 @@ const PhoneHeader = styled.div`
 
 const FeatureShowcase = () => {
   const [activePlatform, setActivePlatform] = useState('ios');
+  const [featureViews, setFeatureViews] = useState({
+    home: 'A',
+    notice: 'A',
+    activity: 'A',
+    community: 'A',
+    mypage: 'A'
+  });
+
+  const toggleView = (feature) => {
+    setFeatureViews(prev => ({
+      ...prev,
+      [feature]: prev[feature] === 'A' ? 'B' : 'A'
+    }));
+  };
 
   return (
     <Section id="features">
