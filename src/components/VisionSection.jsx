@@ -77,7 +77,7 @@ const TextBlock = styled.div`
         word-break: keep-all;
 
         @media (max-width: 768px) {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
     }
 
@@ -86,6 +86,10 @@ const TextBlock = styled.div`
         color: #888;
         line-height: 1.7;
         word-break: keep-all;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
     }
 
     strong {

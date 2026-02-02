@@ -42,7 +42,8 @@ const Title = styled.h2`
     line-height: 1.3;
 
     @media (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        word-break: keep-all; 
     }
 `;
 

@@ -46,12 +46,20 @@ const Title = styled.h2`
   font-size: 3rem;
   margin-bottom: 16px;
   word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Desc = styled.p`
   color: var(--text-secondary);
   font-size: 1.1rem;
   word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Grid = styled.div`

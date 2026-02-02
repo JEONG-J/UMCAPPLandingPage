@@ -37,10 +37,11 @@ const Title = styled.h2`
   font-weight: 800;
   word-break: keep-all;
 
-  span {
-    background: var(--gradient-main);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
@@ -69,6 +70,10 @@ const ComparisonCard = styled(motion.div)`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    padding: 30px 24px;
+  }
+
   /* Watermark text */
   &::after {
     content: '${props => props.$type === 'before' ? 'BEFORE' : 'AFTER'}';
@@ -82,6 +87,12 @@ const ComparisonCard = styled(motion.div)`
         : 'rgba(10, 132, 255, 0.05)'};
     z-index: 0;
     pointer-events: none;
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+      top: 10px;
+      right: 10px;
+    }
   }
 `;
 
@@ -92,6 +103,12 @@ const CardHeader = styled.h3`
   color: ${props => props.$type === 'before' ? '#FF3B30' : '#0A84FF'};
   position: relative;
   z-index: 1;
+  word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
 `;
 
 const List = styled.ul`
@@ -108,6 +125,13 @@ const ListItem = styled.li`
   margin-bottom: 24px;
   font-size: 1.1rem;
   color: #e0e0e0;
+  word-break: keep-all;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
   
   &::before {
     content: '';
@@ -226,6 +250,10 @@ const KPINumber = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Outfit', sans-serif;
+
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 `;
 
 const KPILabel = styled.div`

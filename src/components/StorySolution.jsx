@@ -54,7 +54,7 @@ const Title = styled.h2`
     line-height: 1.3;
 
     @media (max-width: 768px) {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 `;
 
@@ -63,12 +63,20 @@ const SubTitle = styled.p`
     color: var(--text-secondary);
     margin-top: 16px;
     font-weight: 400;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
 `;
 
 const PersonaContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 120px;
+    
+    @media (max-width: 768px) {
+        gap: 80px;
+    }
 `;
 
 const PersonaRow = styled(motion.div)`
@@ -124,7 +132,7 @@ const ContentCard = styled.div`
     @media (max-width: 768px) {
         width: 100%;
         text-align: left;
-        padding: 30px;
+        padding: 24px;
     }
 `;
 
@@ -135,6 +143,10 @@ const StoryText = styled.p`
     color: #e0e0e0;
     font-weight: 300;
     word-break: keep-all;
+
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+    }
 
     strong {
         color: var(--accent-blue);

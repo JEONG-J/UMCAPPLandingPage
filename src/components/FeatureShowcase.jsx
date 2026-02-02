@@ -78,6 +78,11 @@ const FeatureText = styled.div`
   h3 {
     font-size: 2.2rem;
     margin-bottom: 24px;
+    word-break: keep-all;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
   }
   
   p {
@@ -86,6 +91,10 @@ const FeatureText = styled.div`
     margin-bottom: 30px;
     line-height: 1.7;
     word-break: keep-all;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 `;
 

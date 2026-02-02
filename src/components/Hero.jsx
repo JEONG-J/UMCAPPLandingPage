@@ -79,7 +79,7 @@ const Title = styled(motion.h1)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 `;
 
