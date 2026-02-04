@@ -271,7 +271,7 @@ const TeamSection = () => {
   const [selectedMember, setSelectedMember] = useState(null);
 
   const members = [
-    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / iOS Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / iOS Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: 'https://medium.com/@euijjang97', instagram: 'https://www.instagram.com/eui_chan.97/' } },
     { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'SwiftUI, CleanArchitecture, MapKit, CoreLocation', comment: 'iOS 파트를 이끌고 있습니다. 🍎', image: riverImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'SpringBoot, Nest.js, Next.js', comment: '프로덕트팀 내에서 공용으로 사용되는 서버를 제작하는 팀을 이끌고 있습니다. 🌱', image: haneulImg, social: { github: 'https://github.com/kyeoungwoon', linkedin: 'https://www.linkedin.com/in/kyeoungwoon/', blog: 'https://velog.io/@kyeoungwoon/posts', instagram: 'https://www.instagram.com/kyeoungwoon/' } },
     { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', image: euheotchaImg, social: { github: '#', linkedin: '', blog: '#', instagram: '#' } },
