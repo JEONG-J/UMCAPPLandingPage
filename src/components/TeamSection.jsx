@@ -273,9 +273,9 @@ const TeamSection = () => {
   const members = [
     { id: 1, name: '정의찬 (제옹)', role: 'Team Leader / PM / iOS Design / iOS', stack: 'Notion, Swift, Figma', comment: '모든 파트를 아우르는 리더입니다. 👑', image: jeongImg, social: { github: 'https://github.com/JEONG-J', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 2, name: '이재원 (리버)', role: 'Vice Leader / iOS Leader', stack: 'SwiftUI, CleanArchitecture, MapKit, CoreLocation', comment: 'iOS 파트를 이끌고 있습니다. 🍎', image: riverImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'Java, Spring Boot, AWS', comment: '서버 아키텍처를 설계합니다. ☁️', image: haneulImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', image: euheotchaImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
-    { id: 5, name: '이희원 (삼이)', role: 'Android Design / iOS Design', stack: 'Figma, Adobe XD', comment: '사용자 경험을 디자인합니다. 🎨', image: samiImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
+    { id: 3, name: '박경운 (하늘)', role: 'Server Leader', stack: 'SpringBoot, Nest.js, Next.js', comment: '프로덕트팀 내에서 공용으로 사용되는 서버를 제작하는 팀을 이끌고 있습니다. 🌱', image: haneulImg, social: { github: 'https://github.com/kyeoungwoon', linkedin: 'https://www.linkedin.com/in/kyeoungwoon/', blog: 'https://velog.io/@kyeoungwoon/posts', instagram: 'https://www.instagram.com/kyeoungwoon/' } },
+    { id: 4, name: '박유수 (어헛차)', role: 'Android Leader', stack: 'Kotlin, Jetpack Compose', comment: '안드로이드 개발을 리딩합니다. 🤖', image: euheotchaImg, social: { github: '#', linkedin: '', blog: '#', instagram: '#' } },
+    { id: 5, name: '이희원 (삼이)', role: 'Android Design / iOS Design', stack: 'Figma, Adobe Illustrator', comment: 'UX 관점에서 화면 흐름을 설계합니다💡', image: samiImg, social: { github: 'https://github.com/lhwowhl', linkedin: 'https://www.linkedin.com/in/l3l3w0w/', blog: '#', instagram: 'https://www.instagram.com/lhwowhl/' } },
     { id: 6, name: '김미주 (마티)', role: 'iOS Developer', stack: 'Swift, UIKit', comment: '직관적인 인터페이스를 구현합니다.', image: martiImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 7, name: '이예지 (소피)', role: 'iOS Developer', stack: 'Swift, SwiftUI', comment: '부드러운 모션과 인터랙션을 담당합니다.', image: sophieImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
     { id: 8, name: '양지애 (나루)', role: 'Android Developer', stack: 'Kotlin, Android SDK', comment: '안정적인 앱 성능을 최적화합니다.', image: naruImg, social: { github: '#', linkedin: '#', blog: '#', instagram: '#' } },
@@ -348,18 +348,26 @@ const TeamSection = () => {
                 </DetailItem>
 
                 <LinkRow>
-                  <SocialLink href={selectedMember.social.github} target="_blank" title="GitHub">
-                    <GitHubIcon />
-                  </SocialLink>
-                  <SocialLink href={selectedMember.social.linkedin} target="_blank" title="LinkedIn">
-                    <LinkedInIcon />
-                  </SocialLink>
-                  <SocialLink href={selectedMember.social.instagram} target="_blank" title="Instagram">
-                    <InstagramIcon />
-                  </SocialLink>
-                  <SocialLink href={selectedMember.social.blog} target="_blank" title="Blog">
-                    <NoteIcon />
-                  </SocialLink>
+                  {selectedMember.social.github && selectedMember.social.github !== '#' && (
+                    <SocialLink href={selectedMember.social.github} target="_blank" title="GitHub">
+                      <GitHubIcon />
+                    </SocialLink>
+                  )}
+                  {selectedMember.social.linkedin && selectedMember.social.linkedin !== '#' && (
+                    <SocialLink href={selectedMember.social.linkedin} target="_blank" title="LinkedIn">
+                      <LinkedInIcon />
+                    </SocialLink>
+                  )}
+                  {selectedMember.social.instagram && selectedMember.social.instagram !== '#' && (
+                    <SocialLink href={selectedMember.social.instagram} target="_blank" title="Instagram">
+                      <InstagramIcon />
+                    </SocialLink>
+                  )}
+                  {selectedMember.social.blog && selectedMember.social.blog !== '#' && (
+                    <SocialLink href={selectedMember.social.blog} target="_blank" title="Blog">
+                      <NoteIcon />
+                    </SocialLink>
+                  )}
                 </LinkRow>
               </DetailList>
             </ModalContent>
