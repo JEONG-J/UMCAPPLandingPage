@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import home1 from '../assets/Feature/iOS/home1.png';
+import home2 from '../assets/Feature/iOS/home2.png';
+import notice1 from '../assets/Feature/iOS/Notice1.png';
+import notice2 from '../assets/Feature/iOS/Notice2.png';
+import active1 from '../assets/Feature/iOS/active1.png';
+import active2 from '../assets/Feature/iOS/active2.png';
+import commu1 from '../assets/Feature/iOS/commu1.png';
+import commu2 from '../assets/Feature/iOS/commu2.png';
+import myPage1 from '../assets/Feature/iOS/myPage1.png';
+import myPage2 from '../assets/Feature/iOS/myPage2.png';
+
+// Android Imports
+import androidHome1 from '../assets/Feature/Android/home1.png';
+import androidHome2 from '../assets/Feature/Android/home2.png';
+import androidNotice1 from '../assets/Feature/Android/notice1.png';
+import androidNotice2 from '../assets/Feature/Android/notice2.png';
+import androidActive1 from '../assets/Feature/Android/active1.png';
+import androidActive2 from '../assets/Feature/Android/active2.png';
+import androidCommu1 from '../assets/Feature/Android/commu1.png';
+import androidCommu2 from '../assets/Feature/Android/commu2.png';
+import androidMyPage1 from '../assets/Feature/Android/mypage1.png';
+import androidMyPage2 from '../assets/Feature/Android/myapge2.png';
 
 const Section = styled.section`
   padding: 140px 20px;
@@ -76,12 +98,12 @@ const FeatureItem = styled(motion.div)`
 
 const FeatureText = styled.div`
   h3 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     margin-bottom: 24px;
     word-break: keep-all;
 
     @media (max-width: 768px) {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   }
   
@@ -115,6 +137,27 @@ const List = styled.ul`
       color: var(--accent-blue);
       font-weight: bold;
     }
+  }
+`;
+
+const Subtitle = styled.span`
+  font-size: 0.6em;
+  color: #aaa;
+  font-weight: 400;
+  margin-left: 8px;
+  vertical-align: middle;
+`;
+
+const ResponsiveImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    height: 600px; /* Reduced from 800px for mobile */
   }
 `;
 
@@ -373,6 +416,20 @@ const PhoneHeader = styled.div`
 
 const FeatureShowcase = () => {
   const [activePlatform, setActivePlatform] = useState('ios');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeNoticeImageIndex, setActiveNoticeImageIndex] = useState(0);
+  const [activeActivityImageIndex, setActiveActivityImageIndex] = useState(0);
+  const [activeCommuImageIndex, setActiveCommuImageIndex] = useState(0);
+  const [activeMypageImageIndex, setActiveMypageImageIndex] = useState(0);
+
+  // Manual switch only
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveImageIndex(prev => (prev === 0 ? 1 : 0));
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   const [featureViews, setFeatureViews] = useState({
     home: 'A',
     notice: 'A',
@@ -479,82 +536,182 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6 }}
           >
             <FeatureText>
-              <h3><span className="gradient-text">1. 홈 (Home)</span> - 활동의 중심 허브</h3>
-              <p>동아리 활동의 모든 정보를 한눈에 확인하세요.<br />
-                누적 활동일수부터 오늘 세션, 경고 현황, 공지까지 모든 중요 정보를 메인에서 놓치지 않도록 제공합니다.</p>
+              <h3><span className="gradient-text">1. 홈 (Home)</span> <Subtitle>- 활동의 중심 허브</Subtitle></h3>
+              <p>기수 정보부터 일정, 패널티 현황까지.<br />
+                동아리 활동에 필요한 모든 핵심 정보를 가장 직관적인 형태로 제공합니다.</p>
               <List>
-                <li>시즌 정보 카드 & 세대별 경고 현황 관리</li>
-                <li>인터랙티브 캘린더 & 일정 상세보기</li>
-                <li>최근 공지사항 퀵뷰 & 알림 히스토리</li>
+                <li>기수 정보 및 남은 기간 표시</li>
+                <li>기수별 패널티 현황 집계</li>
+                <li>캘린더 및 일정 관리 (Admin)</li>
+                <li>최근 공지 및 알림 이력</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer>
               {activePlatform === 'ios' && (
-                <PhoneMockup
-                  key="ios"
-                  type="ios"
-                  label="iOS"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="홈"
-                >
-                  <PhoneHeader $type="ios">Home</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ background: '#222', borderRadius: '16px', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#888' }}>이번 시즌 활동일수</div>
-                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>D+42</div>
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                      <div style={{ background: '#1c1c1e', borderRadius: '12px', height: '80px', padding: '12px', border: '1px solid #333' }}>
-                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#ff3b30', marginBottom: '8px' }}></div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Next Session</div>
-                      </div>
-                      <div style={{ background: '#1c1c1e', borderRadius: '12px', height: '80px', padding: '12px', border: '1px solid #333' }}>
-                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#34c759', marginBottom: '8px' }}></div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>My Status</div>
-                      </div>
-                    </div>
-                    <div style={{ background: '#2c2c2e', borderRadius: '16px', padding: '16px' }}>
-                      <div style={{ fontSize: '0.9rem', marginBottom: '10px', color: '#fff' }}>최근 공지</div>
-                      <ListItemMock style={{ height: '40px', background: 'transparent', borderBottom: '1px solid #3a3a3a', borderRadius: 0, padding: 0 }}>
-                        <span style={{ fontSize: '0.75rem', color: '#ccc' }}>[필독] 3주차 세션 안내</span>
-                      </ListItemMock>
-                      <ListItemMock style={{ height: '40px', background: 'transparent', borderRadius: 0, padding: 0 }}>
-                        <span style={{ fontSize: '0.75rem', color: '#888' }}>회비 납부 안내</span>
-                      </ListItemMock>
-                    </div>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={home1}
+                    alt="Home Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={home2}
+                    alt="Home Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
 
               {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="홈"
-                >
-                  <PhoneHeader $type="android">Home</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    <div style={{ background: '#2d3135', borderRadius: '24px', padding: '20px' }}>
-                      <div style={{ fontSize: '0.9rem', color: '#3ddc84', marginBottom: '4px' }}>Activity Days</div>
-                      <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff' }}>42</div>
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', padding: '10px', background: '#1e1e1e', borderRadius: '16px' }}>
-                      {[...Array(7)].map((_, i) => (
-                        <div key={i} style={{ aspectRatio: '1', borderRadius: '50%', background: i === 3 ? '#3ddc84' : '#333' }}></div>
-                      ))}
-                    </div>
-                    <FeedCardMock style={{ background: '#1e1e1e', flexDirection: 'column', gap: '8px' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#aaa' }}>UPCOMING</div>
-                      <div style={{ fontSize: '1rem', color: '#fff', fontWeight: 'bold' }}>Server Deployment</div>
-                      <div style={{ fontSize: '0.8rem', color: '#666' }}>Sat, 14:00 PM</div>
-                    </FeedCardMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={androidHome1}
+                    alt="Android Home Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={androidHome2}
+                    alt="Android Home Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
             </DualVisualContainer>
           </FeatureItem>
@@ -568,78 +725,180 @@ const FeatureShowcase = () => {
             style={{ direction: 'rtl' }}
           >
             <FeatureText style={{ direction: 'ltr' }}>
-              <h3><span className="gradient-text">2. 공지 (Notice)</span> - The Ping</h3>
-              <p>중요한 정보를 놓치지 않는 혁신, The Ping.<br />
-                디스코드와 노션에 흩어진 공지를 한곳에서 확인하고, 공지 수신 확인 시스템으로 누가 읽었는지 실시간으로 추적합니다.</p>
+              <h3><span className="gradient-text">2. 공지 (Notice)</span> <Subtitle>- 체계적인 소식 전달</Subtitle></h3>
+              <p>기수부터 파트까지, 원하는 공지만 골라보는 강력한 필터링.<br />
+                검색부터 관리자 기능까지 동아리 운영에 최적화된 공지 시스템입니다.</p>
               <List>
-                <li>세대/파트/카테고리 다중 필터 & 전체 검색</li>
-                <li>공지 수신 확인 추적 (The Ping) & 투표 시스템</li>
-                <li>사진과 링크가 포함된 멀티미디어 공지 에디터</li>
+                <li>다층 필터 시스템 (기수/타입/파트 등) & 통합 검색</li>
+                <li>공지 상세 조회 (내용/투표/대상자) 및 Admin 관리 기능</li>
+                <li>공지 작성/수정/삭제 및 투표 생성 (Admin)</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer style={{ direction: 'ltr' }}>
               {activePlatform === 'ios' && (
-                <PhoneMockup
-                  key="ios"
-                  type="ios"
-                  label="iOS"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="공지"
-                >
-                  <PhoneHeader $type="ios">The Ping</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
-                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: '#333', color: '#fff', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>전체</div>
-                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: 'var(--accent-blue)', color: '#fff', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>필독</div>
-                      <div style={{ padding: '6px 14px', borderRadius: '20px', background: '#333', color: '#aaa', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>일반</div>
-                    </div>
-                    <FeedCardMock style={{ alignItems: 'flex-start' }}>
-                      <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: '#ff3b30', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>!</div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', color: '#fff' }}>[긴급] 서버 점검 안내</div>
-                        <div style={{ fontSize: '0.75rem', color: '#aaa' }}>2024.03.15 14:00</div>
-                        <div style={{ marginTop: '8px', fontSize: '0.7rem', color: '#34c759' }}>✓ 128명 읽음</div>
-                      </div>
-                    </FeedCardMock>
-                    <FeedCardMock>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', color: '#fff' }}>3월 정기 세션 자료</div>
-                        <div style={{ width: '100%', height: '80px', background: '#333', borderRadius: '8px', marginTop: '8px' }}></div>
-                      </div>
-                    </FeedCardMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={notice1}
+                    alt="Notice Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveNoticeImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeNoticeImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={notice2}
+                    alt="Notice Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveNoticeImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeNoticeImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
               {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="공지"
-                >
-                  <PhoneHeader $type="android">Notices</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    <div style={{ position: 'relative' }}>
-                      <div style={{ height: '40px', background: '#222', borderRadius: '20px', display: 'flex', alignItems: 'center', padding: '0 16px', color: '#aaa', fontSize: '0.9rem' }}>Search notices...</div>
-                    </div>
-                    <ListItemMock style={{ flexDirection: 'column', alignItems: 'flex-start', height: 'auto', padding: '16px', gap: '8px' }}>
-                      <div style={{ padding: '2px 8px', borderRadius: '4px', background: 'rgba(61, 220, 132, 0.2)', color: '#3ddc84', fontSize: '0.7rem', width: 'fit-content' }}>MUST READ</div>
-                      <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>Session Schedule Change</div>
-                      <div style={{ width: '100%', height: '4px', background: '#333', borderRadius: '2px', marginTop: '4px' }}>
-                        <div style={{ width: '80%', height: '100%', background: '#3ddc84', borderRadius: '2px' }}></div>
-                      </div>
-                      <div style={{ fontSize: '0.7rem', color: '#aaa', alignSelf: 'flex-end' }}>80% Read</div>
-                    </ListItemMock>
-                    <ListItemMock style={{ height: 'auto', padding: '16px' }}>
-                      <div style={{ fontSize: '0.9rem' }}>General Inquiry</div>
-                      <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Yesterday</div>
-                    </ListItemMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={androidNotice1}
+                    alt="Android Notice Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveNoticeImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeNoticeImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={androidNotice2}
+                    alt="Android Notice Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveNoticeImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeNoticeImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
             </DualVisualContainer>
           </FeatureItem>
@@ -652,72 +911,181 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6 }}
           >
             <FeatureText>
-              <h3><span className="gradient-text">3. 활동 (Activity)</span> - Dual Mode</h3>
-              <p>챌린저와 운영진, 두 가지 모드로 완벽한 활동 관리를 지원합니다.<br />
-                지오펜싱 기반 스마트 출석부터 커리큘럼, 미션 관리까지 하나의 앱에서 해결하세요.</p>
+              <h3><span className="gradient-text">3. 활동 (Activity)</span> <Subtitle>- Dual Mode System</Subtitle></h3>
+              <p>일반 멤버(Challenger)와 운영진(Admin)에게 각각 최적화된 경험을 제공합니다.<br />
+                스마트 출석부터 스터디 관리까지, 역할에 맞는 맞춤형 기능을 경험하세요.</p>
               <List>
-                <li>GPS 기반 스마트 출석 & 지오펜싱(Geofencing)</li>
-                <li>커리큘럼 진행도 & 주차별 미션 카드</li>
-                <li>Admin 모드: 출석 관리, 스터디 생성, 멤버 관리</li>
+                <li>Challenger 모드 (GPS 출석/스터디)</li>
+                <li>Admin 모드 (출석 관리/권한 설정)</li>
+                <li>지오펜싱 기반 스마트 출석 인증</li>
+                <li>커리큘럼 및 미션 카드 관리</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer>
               {activePlatform === 'ios' && (
-                <PhoneMockup
-                  key="ios"
-                  type="ios"
-                  label="iOS"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="활동"
-                >
-                  <PhoneHeader $type="ios">Activity</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', justifyContent: 'center' }}>
-                    <div style={{ width: '160px', height: '160px', borderRadius: '50%', background: 'conic-gradient(var(--accent-blue) 0% 75%, #333 75% 100%)', margin: '0 auto', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <div style={{ width: '130px', height: '130px', borderRadius: '50%', background: '#111', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>75%</span>
-                        <span style={{ fontSize: '0.7rem', color: '#888' }}>Attendance</span>
-                      </div>
-                    </div>
-                    <BtnMock style={{ marginTop: '20px' }}>GPS 출석하기</BtnMock>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', fontSize: '0.8rem', color: '#666' }}>
-                      <span>📍 Location Verified</span>
-                    </div>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={active1}
+                    alt="Activity Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveActivityImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeActivityImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={active2}
+                    alt="Activity Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveActivityImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeActivityImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
               {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="활동"
-                >
-                  <PhoneHeader $type="android">Activity</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ background: '#2d3135', borderRadius: '16px', padding: '6px', display: 'flex', marginBottom: '10px' }}>
-                      <div style={{ flex: 1, padding: '8px', textAlign: 'center', background: '#3ddc84', color: '#000', borderRadius: '12px', fontWeight: 'bold' }}>Challenger</div>
-                      <div style={{ flex: 1, padding: '8px', textAlign: 'center', color: '#aaa' }}>Admin</div>
-                    </div>
-                    <ListItemMock style={{ background: '#1e1e1e', justifyContent: 'flex-start', gap: '16px' }}>
-                      <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📚</div>
-                      <div>
-                        <div style={{ fontSize: '0.9rem' }}>Mission 03</div>
-                        <div style={{ fontSize: '0.7rem', color: '#3ddc84' }}>Completed</div>
-                      </div>
-                    </ListItemMock>
-                    <ListItemMock style={{ background: '#1e1e1e', justifyContent: 'flex-start', gap: '16px' }}>
-                      <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📍</div>
-                      <div>
-                        <div style={{ fontSize: '0.9rem' }}>Geofence Setup</div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Admin Only</div>
-                      </div>
-                    </ListItemMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={androidActive1}
+                    alt="Android Activity Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveActivityImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeActivityImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={androidActive2}
+                    alt="Android Activity Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveActivityImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeActivityImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
 
             </DualVisualContainer>
@@ -732,78 +1100,181 @@ const FeatureShowcase = () => {
             style={{ direction: 'rtl' }}
           >
             <FeatureText style={{ direction: 'ltr' }}>
-              <h3><span className="gradient-text">4. 커뮤니티 (Community)</span> - 4 Categories</h3>
-              <p>질문하고, 모이고, 인정받는 공간.<br />
-                전체, 질문, 번개모임, 명예의전당 4가지 카테고리로 체계화된 소통을 경험하세요.</p>
+              <h3><span className="gradient-text">4. 커뮤니티 (Community)</span> <Subtitle>- 4 Categories</Subtitle></h3>
+              <p>소통과 성장을 위한 4가지 핵심 카테고리.<br />
+                전체, 질문, 번개모임, 그리고 명예의 전당으로 구성된 체계적인 소통 공간입니다.</p>
               <List>
-                <li>4-카테고리 메뉴: 전체 / 질문 / 번개모임 / 명예의전당</li>
-                <li>게시글 작성, 상세 조회 및 댓글 시스템</li>
-                <li>우수 활동자를 위한 '명예의전당 (Hall of Fame)'</li>
+                <li>게시판: 전체/질문/번개모임</li>
+                <li>명예의 전당 (베스트 워크북)</li>
+                <li>게시물 작성/수정/삭제 & 검색</li>
+                <li>좋아요/댓글 & 파트별 필터링</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer style={{ direction: 'ltr' }}>
               {activePlatform === 'ios' && (
-                <PhoneMockup
-                  key="ios"
-                  type="ios"
-                  label="iOS"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="커뮤니티"
-                >
-                  <PhoneHeader $type="ios">Community</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
-                      <div style={{ background: '#222', borderRadius: '12px', padding: '16px', textAlign: 'center', fontSize: '0.8rem' }}>🔥 번개모임</div>
-                      <div style={{ background: '#222', borderRadius: '12px', padding: '16px', textAlign: 'center', fontSize: '0.8rem', color: '#ffd700' }}>🏆 명예의전당</div>
-                    </div>
-                    <FeedCardMock>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#444' }}></div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.9rem', marginBottom: '4px', fontWeight: '600' }}>React 상태관리 질문입니다!</div>
-                        <div style={{ fontSize: '0.8rem', color: '#ccc', lineHeight: '1.4' }}>Recoil vs Redux 어떤걸 쓰는게 좋을까요? 프로젝트...</div>
-                        <div style={{ display: 'flex', gap: '10px', marginTop: '8px', fontSize: '0.7rem', color: '#888' }}>
-                          <span>💬 5</span>
-                          <span>❤️ 12</span>
-                        </div>
-                      </div>
-                    </FeedCardMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={commu2}
+                    alt="Community Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveCommuImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeCommuImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={commu1}
+                    alt="Community Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveCommuImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeCommuImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
               {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="커뮤니티"
-                >
-                  <PhoneHeader $type="android">Community</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ display: 'flex', overflowX: 'auto', gap: '12px', paddingBottom: '10px', borderBottom: '1px solid #333' }}>
-                      <div style={{ color: '#fff', fontWeight: 'bold', borderBottom: '2px solid #fff', paddingBottom: '4px' }}>All</div>
-                      <div style={{ color: '#888' }}>Q&A</div>
-                      <div style={{ color: '#888' }}>Meetup</div>
-                    </div>
-                    <FeedCardMock style={{ background: '#1e1e1e' }}>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.8rem', color: '#3ddc84', marginBottom: '4px' }}>Q&A</div>
-                        <div style={{ fontSize: '1rem', marginBottom: '4px' }}>Deployment Issue</div>
-                        <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Getting 502 error on nginx...</div>
-                      </div>
-                    </FeedCardMock>
-                    <FeedCardMock style={{ background: '#1e1e1e' }}>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.8rem', color: '#ffab00', marginBottom: '4px' }}>HALL OF FAME</div>
-                        <div style={{ fontSize: '1rem', marginBottom: '4px' }}>Best Contributor</div>
-                        <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Congratulations to Team A!</div>
-                      </div>
-                    </FeedCardMock>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={androidCommu1}
+                    alt="Android Community Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveCommuImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeCommuImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={androidCommu2}
+                    alt="Android Community Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveCommuImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeCommuImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
             </DualVisualContainer>
           </FeatureItem>
@@ -816,84 +1287,180 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6 }}
           >
             <FeatureText>
-              <h3><span className="gradient-text">5. 마이페이지 (MyPage)</span> - Personal Dashboard</h3>
-              <p>내 활동을 관리하는 완벽한 개인 대시보드.<br />
-                프로필 설정부터 활동 로그, 소셜 계정 연동까지 8개 섹션으로 구조화된 개인 공간을 제공합니다.</p>
+              <h3><span className="gradient-text">5. 마이페이지 (MyPage)</span> <Subtitle>- User Dashboard</Subtitle></h3>
+              <p>프로필부터 설정까지, 개인화된 8가지 섹션으로 내 모든 활동을 관리하세요.<br />
+                직관적인 리스트 UI로 복잡한 정보도 한눈에 확인할 수 있습니다.</p>
               <List>
-                <li>GitHub, LinkedIn, Blog 등 외부 링크 연동</li>
-                <li>작성한 글, 댓글, 북마크 등 내 활동 히스토리</li>
-                <li>설정, 지원, 법률 정보 및 소셜 로그인 관리</li>
+                <li><strong>프로필 & 활동 기록</strong>: 외부 링크 관리, 출석·게시글·댓글 활동 내역</li>
+                <li><strong>설정 & 지원</strong>: 알림·테마 설정, FAQ·문의, 이용약관</li>
+                <li><strong>계정 관리</strong>: SNS 연동, 앱 정보, 로그아웃</li>
               </List>
             </FeatureText>
 
             <DualVisualContainer>
               {activePlatform === 'ios' && (
-                <PhoneMockup
-                  key="ios"
-                  type="ios"
-                  label="iOS"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="마이페이지"
-                >
-                  <PhoneHeader $type="ios">My Information</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '10px' }}>
-                      <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: '#333' }}></div>
-                      <div>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Kim UMC</div>
-                        <div style={{ fontSize: '0.8rem', color: '#888' }}>Backend Developer</div>
-                      </div>
-                    </div>
-                    <div style={{ background: '#222', borderRadius: '12px', overflow: 'hidden' }}>
-                      <ListItemMock style={{ background: 'transparent', height: '50px', borderBottom: '1px solid #333', marginBottom: 0, borderRadius: 0 }}>
-                        <span style={{ fontSize: '0.9rem' }}>My Activity</span>
-                        <span style={{ color: '#666' }}>›</span>
-                      </ListItemMock>
-                      <ListItemMock style={{ background: 'transparent', height: '50px', borderBottom: '1px solid #333', marginBottom: 0, borderRadius: 0 }}>
-                        <span style={{ fontSize: '0.9rem' }}>Linked Accounts</span>
-                        <span style={{ color: '#666' }}>›</span>
-                      </ListItemMock>
-                      <ListItemMock style={{ background: 'transparent', height: '50px', marginBottom: 0, borderRadius: 0 }}>
-                        <span style={{ fontSize: '0.9rem' }}>Settings</span>
-                        <span style={{ color: '#666' }}>›</span>
-                      </ListItemMock>
-                    </div>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={myPage1}
+                    alt="MyPage Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveMypageImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeMypageImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={myPage2}
+                    alt="MyPage Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveMypageImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeMypageImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
               {activePlatform === 'android' && (
-                <PhoneMockup
-                  key="android"
-                  type="android"
-                  label="Android"
-                  zIndex={10}
-                  styleProps={{ $left: 'auto', $right: 'auto', $rotate: 0, position: 'relative' }}
-                  appTitle="마이페이지"
-                >
-                  <PhoneHeader $type="android">My Page</PhoneHeader>
-                  <div style={{ padding: '0 10px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                      <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#333', margin: '0 auto 16px' }}></div>
-                      <div style={{ fontSize: '1.4rem', fontWeight: 'bold', marginBottom: '4px' }}>Lee Server</div>
-                      <div style={{ fontSize: '0.9rem', color: '#aaa' }}>Server / Node.js</div>
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>12</div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Posts</div>
-                      </div>
-                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>5</div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Badges</div>
-                      </div>
-                      <div style={{ background: '#2d3135', borderRadius: '16px', padding: '16px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>850</div>
-                        <div style={{ fontSize: '0.7rem', color: '#aaa' }}>Points</div>
-                      </div>
-                    </div>
-                  </div>
-                </PhoneMockup>
+                <ResponsiveImageContainer>
+                  <motion.img
+                    src={androidMyPage1}
+                    alt="Android MyPage Screen 1"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveMypageImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeMypageImageIndex === 0 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: 50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+                  <motion.img
+                    src={androidMyPage2}
+                    alt="Android MyPage Screen 2"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                      if (swipe) setActiveMypageImageIndex(prev => (prev === 0 ? 1 : 0));
+                    }}
+                    animate={activeMypageImageIndex === 1 ? 'front' : 'back'}
+                    variants={{
+                      front: { zIndex: 10, scale: 1, x: 0, opacity: 1, filter: 'blur(0px)' },
+                      back: { zIndex: 5, scale: 0.85, x: -50, opacity: 0.6, filter: 'blur(2px)' }
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                      width: '280px',
+                      height: 'auto',
+                      position: 'absolute',
+                      filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                      cursor: 'grab'
+                    }}
+                    whileTap={{ cursor: 'grabbing' }}
+                  />
+
+                  {/* Visual Swipe Hint */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      zIndex: 20,
+                      pointerEvents: 'none',
+                      opacity: 0.8
+                    }}
+                  >
+                    <motion.div
+                      animate={{ x: [0, -5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &lt;
+                    </motion.div>
+                    <div style={{ fontSize: '0.9rem', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)', letterSpacing: '1px' }}>SWIPE</div>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      style={{ fontSize: '1.2rem', color: 'white', fontWeight: 'bold' }}
+                    >
+                      &gt;
+                    </motion.div>
+                  </motion.div>
+                </ResponsiveImageContainer>
               )}
             </DualVisualContainer>
           </FeatureItem>

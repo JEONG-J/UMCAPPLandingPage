@@ -13,7 +13,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
     return (
         <FooterContainer>
-            <p>&copy; 2026 UMC Product Team. All rights reserved.</p>
+            <p>&copy; 2026 Je_Ong. All rights reserved.</p>
         </FooterContainer>
     );
 };
