@@ -267,6 +267,7 @@ const Hero = () => {
           운영 업무는 우리가 관리합니다.
         </Subtitle>
 
+        {/* Temporarily hidden as per request
         <ButtonGroup
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -296,6 +297,7 @@ const Hero = () => {
             <StoreButtonImage src={appStoreBadge} alt="Download on the App Store" />
           </motion.a>
         </ButtonGroup>
+        */}
       </Content>
 
       <ScrollIndicator
